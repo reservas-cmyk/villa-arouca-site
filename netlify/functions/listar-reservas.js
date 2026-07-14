@@ -42,7 +42,7 @@ export default async (req) => {
         registro = null;
       }
       const itens = (registro?.itens || []).filter((item) => {
-        if (item.status === "confirmado") return true;
+        if (item.status === "confirmado" || item.status === "pendente_manual") return true;
         if (item.status === "pendente" && item.expiraEm > agoraMs) return true;
         return false;
       });

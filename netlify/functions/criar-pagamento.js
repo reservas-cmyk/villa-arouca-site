@@ -14,7 +14,7 @@ const DURACAO_HOLD_MINUTOS = 15;
 function contarOcupadas(registro) {
   const agora = Date.now();
   return (registro.itens || []).reduce((soma, item) => {
-    if (item.status === "confirmado") return soma + item.pessoas;
+    if (item.status === "confirmado" || item.status === "pendente_manual") return soma + item.pessoas;
     if (item.status === "pendente" && item.expiraEm > agora) return soma + item.pessoas;
     return soma;
   }, 0);

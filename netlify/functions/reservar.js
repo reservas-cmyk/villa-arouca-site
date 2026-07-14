@@ -60,7 +60,7 @@ export default async (req) => {
   function contarOcupadas(registro) {
     const agoraMs = Date.now();
     return (registro.itens || []).reduce((soma, item) => {
-      if (item.status === "confirmado") return soma + item.pessoas;
+      if (item.status === "confirmado" || item.status === "pendente_manual") return soma + item.pessoas;
       if (item.status === "pendente" && item.expiraEm > agoraMs) return soma + item.pessoas;
       return soma;
     }, 0);

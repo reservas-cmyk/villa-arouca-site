@@ -41,6 +41,7 @@
   .tag { display: inline-block; padding: 0.15rem 0.55rem; border-radius: 20px; font-size: 0.7rem; }
   .tag.confirmado { background: #EAF0E2; color: var(--vinha); }
   .tag.pendente { background: #FDF3DC; color: #8a6d1a; }
+  .tag.pendente_manual { background: #F5E4E1; color: var(--syrah-profundo); }
   .tag.teste { background: #E4E9F5; color: #34477a; margin-left: 0.4rem; }
   .vazio { text-align: center; opacity: 0.6; padding: 3rem 0; }
 </style>
@@ -72,6 +73,42 @@
     <button onclick="carregar()">Buscar</button>
   </div>
 
+  <details style="margin-bottom:2rem;">
+    <summary style="cursor:pointer; font-size:0.85rem; color:var(--syrah); text-transform:uppercase; letter-spacing:1px; margin-bottom:0.8rem;">+ Inserir reserva feita pelo WhatsApp</summary>
+    <div class="turma-card" style="margin-top:0.8rem;">
+      <div class="filtro-form" style="flex-wrap:wrap;">
+        <div><label>Nome</label><input type="text" id="mNome"></div>
+        <div><label>WhatsApp</label><input type="text" id="mTelefone"></div>
+        <div><label>Data</label><input type="date" id="mData"></div>
+        <div>
+          <label>Horário</label>
+          <select id="mHorario" style="padding:0.6rem 0.8rem; border:1px solid rgba(70,66,68,0.25); border-radius:3px;">
+            <option value="11:00">11:00</option>
+            <option value="12:30">12:30</option>
+            <option value="14:00">14:00</option>
+          </select>
+        </div>
+        <div><label>Pessoas</label><input type="number" id="mPessoas" min="1" max="20" style="width:70px;"></div>
+        <div>
+          <label>Degustação</label>
+          <select id="mTipo" style="padding:0.6rem 0.8rem; border:1px solid rgba(70,66,68,0.25); border-radius:3px;">
+            <option value="vinho">Vinho</option>
+            <option value="suco">Suco</option>
+          </select>
+        </div>
+        <div>
+          <label>Pagamento</label>
+          <select id="mPaga" style="padding:0.6rem 0.8rem; border:1px solid rgba(70,66,68,0.25); border-radius:3px;">
+            <option value="nao">Ainda não pagou</option>
+            <option value="sim">Já pagou</option>
+          </select>
+        </div>
+        <button onclick="criarReservaManual()">Salvar</button>
+      </div>
+      <p id="erroManual" style="color:var(--syrah); font-size:0.85rem; margin:0.6rem 0 0;"></p>
+    </div>
+  </details>
+
   <div id="resultado"></div>
 </div>
 
@@ -99,6 +136,36 @@
     document.getElementById('dataInicio').value = hoje();
     document.getElementById('dataFim').value = daquiA(30);
     carregar();
+  }
+
+  function criarReservaManual() {
+    var senha = sessionStorage.getItem(SENHA_KEY);
+    var payload = {
+      nome: document.getElementById('mNome').value.trim(),
+      telefone: document.getElementById('mTelefone').value.trim(),
+      data: document.getElementById('mData').value,
+      horario: document.getElementById('mHorario').value,
+      pessoas: document.getElementById('mPessoas').value,
+      tipoDegustacao: document.getElementById('mTipo').value,
+      paga: document.getElementById('mPaga').value === 'sim',
+    };
+    document.getElementById('erroManual').textContent = '';
+    fetch('/api/criar-reserva-manual', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-admin-secret': senha },
+      body: JSON.stringify(payload),
+    })
+      .then(function (r) { return r.json().then(function (d) { return { status: r.status, body: d }; }); })
+      .then(function (res) {
+        if (res.status !== 200) {
+          document.getElementById('erroManual').textContent = res.body.erro || 'Não foi possível salvar.';
+          return;
+        }
+        document.getElementById('mNome').value = '';
+        document.getElementById('mTelefone').value = '';
+        document.getElementById('mPessoas').value = '';
+        carregar();
+      });
   }
 
   function carregar() {
@@ -155,7 +222,8 @@
         html += '<td>' + r.pessoas + '</td>';
         html += '<td>' + (r.tipoDegustacao === 'vinho' ? 'Vinho' : 'Suco') + '</td>';
         html += '<td>R$ ' + r.valorTotal + '</td>';
-        html += '<td><span class="tag ' + r.status + '">' + (r.status === 'confirmado' ? 'Pago' : 'Aguardando pagamento') + '</span>' + (r.teste ? '<span class="tag teste">teste</span>' : '') + '</td>';
+        var rotuloStatus = r.status === 'confirmado' ? 'Pago' : (r.status === 'pendente_manual' ? 'Combinado no WhatsApp — aguardando pagamento' : 'Aguardando pagamento (Mercado Pago)');
+        html += '<td><span class="tag ' + r.status + '">' + rotuloStatus + '</span>' + (r.teste ? '<span class="tag teste">teste</span>' : '') + (r.origem === 'whatsapp' ? '<span class="tag futuro">WhatsApp</span>' : '') + '</td>';
         html += '</tr>';
       });
       html += '</tbody></table></div>';
