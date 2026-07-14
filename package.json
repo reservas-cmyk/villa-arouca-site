@@ -1,0 +1,10 @@
+{
+  "name": "villa-arouca-site",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Site Villa Arouca / Vinícola Arouca / Casa Vinnus — inclui Netlify Functions para o motor de reservas da visita guiada.",
+  "dependencies": {
+    "@netlify/blobs": "^8.1.0"
+  }
+}

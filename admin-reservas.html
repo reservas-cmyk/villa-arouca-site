@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Painel de Reservas | Casa Vinnus</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/estilo.css">
+<style>
+  body { background: var(--cal); }
+  .painel-wrap { max-width: 1000px; margin: 0 auto; padding: 2rem 1.2rem 4rem; }
+  .login-card {
+    max-width: 380px; margin: 4rem auto; background: var(--branco);
+    border: 1px solid rgba(70,66,68,0.15); border-radius: 4px; padding: 2rem;
+    text-align: center;
+  }
+  .login-card input {
+    width: 100%; padding: 0.75rem 0.9rem; margin: 1rem 0;
+    border: 1px solid rgba(70,66,68,0.25); border-radius: 3px; font-size: 1rem;
+  }
+  .login-card button, .filtro-form button {
+    background: var(--syrah); color: var(--branco); border: none;
+    padding: 0.75rem 1.5rem; border-radius: 3px; cursor: pointer;
+    text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem;
+  }
+  .filtro-form { display: flex; gap: 0.8rem; align-items: end; flex-wrap: wrap; margin-bottom: 2rem; }
+  .filtro-form label { display: block; font-size: 0.75rem; text-transform: uppercase; color: var(--syrah); margin-bottom: 0.3rem; }
+  .filtro-form input { padding: 0.6rem 0.8rem; border: 1px solid rgba(70,66,68,0.25); border-radius: 3px; }
+  .turma-card {
+    background: var(--branco); border: 1px solid rgba(70,66,68,0.15); border-radius: 4px;
+    padding: 1.3rem 1.5rem; margin-bottom: 1.2rem;
+  }
+  .turma-topo { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; padding-bottom: 0.8rem; border-bottom: 1px solid rgba(70,66,68,0.1); }
+  .turma-topo h3 { font-size: 1.2rem; margin: 0; }
+  .turma-vagas { font-size: 0.8rem; color: var(--granito); }
+  table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+  th { text-align: left; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--granito); padding: 0.4rem 0.6rem; }
+  td { padding: 0.5rem 0.6rem; border-top: 1px solid rgba(70,66,68,0.08); }
+  .tag { display: inline-block; padding: 0.15rem 0.55rem; border-radius: 20px; font-size: 0.7rem; }
+  .tag.confirmado { background: #EAF0E2; color: var(--vinha); }
+  .tag.pendente { background: #FDF3DC; color: #8a6d1a; }
+  .tag.teste { background: #E4E9F5; color: #34477a; margin-left: 0.4rem; }
+  .vazio { text-align: center; opacity: 0.6; padding: 3rem 0; }
+</style>
+</head>
+<body>
+
+<div id="login-view" class="painel-wrap">
+  <div class="login-card">
+    <p style="font-family:var(--serif); font-size:1.4rem; margin-bottom:0.5rem;">Painel de Reservas</p>
+    <p style="font-size:0.85rem; opacity:0.7;">Casa Vinnus — acesso restrito à equipe</p>
+    <input type="password" id="senha" placeholder="Senha de acesso">
+    <button onclick="entrar()">Entrar</button>
+    <p id="erro-login" style="color:var(--syrah); font-size:0.85rem; margin-top:1rem;"></p>
+  </div>
+</div>
+
+<div id="painel-view" class="painel-wrap" style="display:none;">
+  <p style="font-family:var(--serif); font-size:1.6rem; margin-bottom:1.5rem;">Reservas — Casa Vinnus</p>
+
+  <div class="filtro-form">
+    <div>
+      <label>De</label>
+      <input type="date" id="dataInicio">
+    </div>
+    <div>
+      <label>Até</label>
+      <input type="date" id="dataFim">
+    </div>
+    <button onclick="carregar()">Buscar</button>
+  </div>
+
+  <div id="resultado"></div>
+</div>
+
+<script>
+  var SENHA_KEY = 'painel-casa-vinnus-senha';
+
+  function entrar() {
+    var senha = document.getElementById('senha').value;
+    sessionStorage.setItem(SENHA_KEY, senha);
+    mostrarPainel();
+  }
+
+  function hoje() {
+    return new Date().toISOString().split('T')[0];
+  }
+  function daquiA(dias) {
+    var d = new Date();
+    d.setDate(d.getDate() + dias);
+    return d.toISOString().split('T')[0];
+  }
+
+  function mostrarPainel() {
+    document.getElementById('login-view').style.display = 'none';
+    document.getElementById('painel-view').style.display = 'block';
+    document.getElementById('dataInicio').value = hoje();
+    document.getElementById('dataFim').value = daquiA(30);
+    carregar();
+  }
+
+  function carregar() {
+    var senha = sessionStorage.getItem(SENHA_KEY);
+    var inicio = document.getElementById('dataInicio').value;
+    var fim = document.getElementById('dataFim').value;
+    var resultadoEl = document.getElementById('resultado');
+    resultadoEl.innerHTML = '<p class="vazio">Carregando...</p>';
+
+    fetch('/api/listar-reservas?inicio=' + inicio + '&fim=' + fim, {
+      headers: { 'x-admin-secret': senha }
+    })
+      .then(function (r) {
+        if (r.status === 401) { throw new Error('senha'); }
+        return r.json();
+      })
+      .then(function (data) {
+        renderizar(data.turmas || []);
+      })
+      .catch(function (e) {
+        if (e.message === 'senha') {
+          sessionStorage.removeItem(SENHA_KEY);
+          document.getElementById('login-view').style.display = 'block';
+          document.getElementById('painel-view').style.display = 'none';
+          document.getElementById('erro-login').textContent = 'Senha incorreta.';
+        } else {
+          resultadoEl.innerHTML = '<p class="vazio">Não consegui carregar as reservas.</p>';
+        }
+      });
+  }
+
+  function formatarData(d) {
+    var partes = d.split('-');
+    return partes[2] + '/' + partes[1] + '/' + partes[0];
+  }
+
+  function renderizar(turmas) {
+    var resultadoEl = document.getElementById('resultado');
+    if (turmas.length === 0) {
+      resultadoEl.innerHTML = '<p class="vazio">Nenhuma reserva no período.</p>';
+      return;
+    }
+    var html = '';
+    turmas.forEach(function (turma) {
+      html += '<div class="turma-card">';
+      html += '<div class="turma-topo"><h3>' + formatarData(turma.data) + ' · ' + turma.horario + '</h3>';
+      html += '<span class="turma-vagas">' + turma.vagasRestantes + ' vaga(s) restante(s) de 20</span></div>';
+      html += '<table><thead><tr><th>Nome</th><th>WhatsApp</th><th>Pessoas</th><th>Degustação</th><th>Valor</th><th>Status</th></tr></thead><tbody>';
+      turma.reservas.forEach(function (r) {
+        html += '<tr>';
+        html += '<td>' + r.nome + '</td>';
+        html += '<td>' + r.telefone + '</td>';
+        html += '<td>' + r.pessoas + '</td>';
+        html += '<td>' + (r.tipoDegustacao === 'vinho' ? 'Vinho' : 'Suco') + '</td>';
+        html += '<td>R$ ' + r.valorTotal + '</td>';
+        html += '<td><span class="tag ' + r.status + '">' + (r.status === 'confirmado' ? 'Pago' : 'Aguardando pagamento') + '</span>' + (r.teste ? '<span class="tag teste">teste</span>' : '') + '</td>';
+        html += '</tr>';
+      });
+      html += '</tbody></table></div>';
+    });
+    resultadoEl.innerHTML = html;
+  }
+
+  // Se já tiver senha salva nesta aba, entra direto.
+  if (sessionStorage.getItem(SENHA_KEY)) {
+    mostrarPainel();
+  }
+</script>
+
+</body>
+</html>
