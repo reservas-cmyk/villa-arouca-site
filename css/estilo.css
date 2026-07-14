@@ -179,8 +179,9 @@ a { color: inherit; text-decoration: none; }
   h1 { font-size: clamp(1.9rem, 8vw, 2.6rem); }
   h2 { font-size: clamp(1.5rem, 6vw, 2rem); }
   p { max-width: 100%; font-size: 0.98rem; line-height: 1.75; }
-  section { padding: 3rem 0; }
-  .grid-2, .grid-3 { gap: 2rem; }
+  section { padding: 2.3rem 0; }
+  .grid-2, .grid-3 { gap: 1.3rem; }
+  .divisor { margin: 1.6rem auto; }
   .convite { padding: 0.7rem 1.3rem; font-size: 0.75rem; }
 }
 
@@ -491,7 +492,7 @@ footer a:hover { color: var(--viognier); }
 .hero-suave::before {
   content: '';
   position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(36,28,24,0.35) 0%, rgba(36,28,24,0.25) 45%, rgba(36,28,24,0.55) 100%);
+  background: linear-gradient(180deg, rgba(36,28,24,0.45) 0%, rgba(36,28,24,0.42) 45%, rgba(36,28,24,0.6) 100%);
 }
 .hero-suave-content {
   position: relative;
@@ -501,9 +502,10 @@ footer a:hover { color: var(--viognier); }
 }
 .hero-suave .eyebrow {
   color: var(--nevoa);
-  opacity: 0.9;
+  opacity: 0.92;
   display: block;
-  margin-bottom: 1.2rem;
+  letter-spacing: 1.8px;
+  margin-bottom: 1.1rem;
 }
 .hero-suave h1 {
   color: var(--branco);
@@ -511,6 +513,7 @@ footer a:hover { color: var(--viognier); }
   font-weight: 400;
   line-height: 1.25;
   margin-bottom: 1.8rem;
+  text-shadow: 0 2px 12px rgba(0,0,0,0.45);
 }
 .hero-suave .trio-suave {
   display: flex;

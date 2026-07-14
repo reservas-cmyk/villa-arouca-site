@@ -58,7 +58,7 @@
 </div>
 
 <div id="painel-view" class="painel-wrap" style="display:none;">
-  <p style="font-family:var(--serif); font-size:1.6rem; margin-bottom:1.5rem;">Reservas — Casa Vinnus</p>
+  <p style="font-family:var(--serif); font-size:1.6rem; margin-bottom:1.5rem;">Reservas — Casa Vinnus <a href="codigos-desconto.html" style="font-size:0.75rem; text-transform:uppercase; letter-spacing:1px; opacity:0.6; margin-left:1rem;">Gerenciar códigos →</a></p>
 
   <div class="filtro-form">
     <div>
@@ -146,11 +146,12 @@
       html += '<div class="turma-card">';
       html += '<div class="turma-topo"><h3>' + formatarData(turma.data) + ' · ' + turma.horario + '</h3>';
       html += '<span class="turma-vagas">' + turma.vagasRestantes + ' vaga(s) restante(s) de 20</span></div>';
-      html += '<table><thead><tr><th>Nome</th><th>WhatsApp</th><th>Pessoas</th><th>Degustação</th><th>Valor</th><th>Status</th></tr></thead><tbody>';
+      html += '<table><thead><tr><th>Nome</th><th>WhatsApp</th><th>E-mail</th><th>Pessoas</th><th>Degustação</th><th>Valor</th><th>Status</th></tr></thead><tbody>';
       turma.reservas.forEach(function (r) {
         html += '<tr>';
         html += '<td>' + r.nome + '</td>';
         html += '<td>' + r.telefone + '</td>';
+        html += '<td>' + (r.email || '—') + '</td>';
         html += '<td>' + r.pessoas + '</td>';
         html += '<td>' + (r.tipoDegustacao === 'vinho' ? 'Vinho' : 'Suco') + '</td>';
         html += '<td>R$ ' + r.valorTotal + '</td>';

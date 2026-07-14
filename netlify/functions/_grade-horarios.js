@@ -4,8 +4,8 @@
 // Chave: dia da semana no padrão JS Date.getDay() -> 0=domingo, 1=segunda, ..., 6=sábado
 export const HORARIOS_POR_DIA = {
   4: ["14:00"],           // quinta-feira
-  5: ["11:00", "12:30"],  // sexta-feira
-  6: ["11:00", "12:30"],  // sábado
+  5: ["11:00", "14:00"],  // sexta-feira
+  6: ["11:00", "14:00"],  // sábado
   0: ["11:00"],           // domingo
 };
 

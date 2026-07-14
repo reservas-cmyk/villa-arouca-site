@@ -4,9 +4,9 @@ import {
   CAPACIDADE_POR_TURMA,
   ANTECEDENCIA_MINIMA_HORAS,
   PRECOS,
-  CODIGO_DESCONTO_HOSPEDE,
   TIPOS_DEGUSTACAO,
 } from "./_grade-horarios.js";
+import { verificarCodigo } from "./_codigos.js";
 
 export default async (req) => {
   if (req.method !== "POST") {
@@ -34,7 +34,7 @@ export default async (req) => {
   const tipo = TIPOS_DEGUSTACAO.includes(tipoDegustacao) ? tipoDegustacao : "vinho";
 
   // Preço sempre calculado aqui, nunca confiando em valor vindo do navegador.
-  const codigoValido = (codigoDesconto || "").trim().toUpperCase() === CODIGO_DESCONTO_HOSPEDE;
+  const { valido: codigoValido } = await verificarCodigo(codigoDesconto);
   const tabela = PRECOS[tipo];
   const precoUnitario = codigoValido ? tabela.hospede : tabela.publico;
   const valorTotal = precoUnitario * qtd;

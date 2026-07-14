@@ -128,7 +128,7 @@
   <div class="container">
     <p class="eyebrow" style="text-align:center;">Reservar</p>
     <h2 style="text-align:center; margin-bottom:0.6rem;">Agende sua visita</h2>
-    <p style="text-align:center; max-width:46ch; margin:0 auto 2.5rem;">Visita guiada pela vinícola com degustação orientada dos rótulos da casa — vinho ou suco, sem álcool. Quinta às 14h · sexta e sábado, 11h e 12h30 · domingo às 11h. Agendamento com pelo menos 18h de antecedência.</p>
+    <p style="text-align:center; max-width:46ch; margin:0 auto 2.5rem;">Visita guiada pela vinícola com degustação orientada dos rótulos da casa — vinho ou suco, sem álcool. Quinta às 14h · sexta e sábado, 11h e 14h · domingo às 11h. Agendamento com pelo menos 18h de antecedência.</p>
 
     <div id="aviso-container"></div>
 
@@ -141,6 +141,11 @@
       <div class="campo">
         <label for="telefone">WhatsApp</label>
         <input type="tel" id="telefone" required placeholder="(00) 00000-0000">
+      </div>
+
+      <div class="campo">
+        <label for="email">E-mail</label>
+        <input type="email" id="email" required placeholder="seu@email.com">
       </div>
 
       <div class="campo">
@@ -205,7 +210,7 @@
     </div>
     <div class="footer-bz">
       <p style="font-family:var(--serif); font-size:1rem; letter-spacing:1px; margin-bottom:0.8rem; opacity:0.85;">VINÍCOLA AROUCA &nbsp;·&nbsp; CASA VINNUS &nbsp;·&nbsp; VILLA AROUCA</p>
-      <p>Uma empresa do <a href="https://grupobz.com.br/" target="_blank" rel="noopener">Grupo BZ</a></p>
+      <p>Uma empresa do <a href="https://grupobz.com.br/" target="_blank" rel="noopener">Grupo BZ</a> &nbsp;·&nbsp; <a href="admin-reservas.html" style="opacity:0.55; font-size:0.78rem;">Administrativo</a></p>
     </div>
   </div>
 </footer>
@@ -315,6 +320,7 @@
     var payload = {
       nome: document.getElementById('nome').value.trim(),
       telefone: document.getElementById('telefone').value.trim(),
+      email: document.getElementById('email').value.trim(),
       data: dataInput.value,
       horario: horarioSelecionado,
       pessoas: document.getElementById('pessoas').value,
