@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Villa Arouca | Vinícola, Hospedagem e Casa Vinnus — Areal, Serra Fluminense</title>
-<meta name="description" content="Villa Arouca: vinícola, hospedagem e a experiência enogastronômica da Casa Vinnus na Serra Fluminense, Areal, RJ.">
+<title>Planeje sua visita | Villa Arouca — Areal, Serra Fluminense</title>
+<meta name="description" content="Como chegar, distâncias, políticas e tudo que você precisa saber para visitar a Villa Arouca em Areal, Serra Fluminense.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/estilo.css">
@@ -16,79 +16,91 @@
     <a href="index.html" class="nav-logo"><img src="img/geral/logo-vinicola-arouca.png" alt="Vinícola Arouca">Vinícola Arouca</a>
     <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false"><span></span></button>
     <div class="nav-links">
-      <a href="index.html" aria-current="page">Início</a>
+      <a href="index.html">Início</a>
       <a href="a-vinicola.html">A Vinícola</a>
       <a href="casa-vinnus.html">Casa Vinnus</a>
       <a href="villa-arouca.html">Villa Arouca</a>
-      <a href="planeje.html">Planeje</a>
+      <a href="planeje.html" aria-current="page">Planeje</a>
       <a href="agendar-visita.html" class="nav-cta">Agendar visita</a>
     </div>
   </div>
 </nav>
 
-<header class="hero-suave" style="background-image:url('img/vinicola/vinhedo-corredor-arvore.jpg')">
-  <video class="hero-video-mobile" autoplay muted loop playsinline poster="img/vinicola/vinhedo-corredor-arvore.jpg">
-    <source src="video/hero-mobile.mp4" type="video/mp4">
-  </video>
-  <div class="hero-suave-content">
-    <span class="eyebrow">Vinícola Arouca · Areal, Serra Fluminense</span>
-    <h1>O vinhedo, o vinho, a taça e momentos de puro êxtase.</h1>
-    <div class="trio-suave">
-      <a href="a-vinicola.html">A Vinícola</a>
-      <span class="ponto">·</span>
-      <a href="casa-vinnus.html">Casa Vinnus</a>
-      <span class="ponto">·</span>
-      <a href="villa-arouca.html">Villa Arouca</a>
+<header class="hero" style="min-height:56vh; background-image:url('img/vinicola/vinhedo-estrada-gado.jpg')">
+  <div class="hero-content">
+    <p class="eyebrow">Fazenda Boavista, Areal — RJ</p>
+    <h1>Planeje sua visita</h1>
+    <div style="display:flex; gap:1rem; flex-wrap:wrap; margin-top:1.5rem;">
+      <a href="villa-arouca.html" class="convite claro">Hospedagem</a>
+      <a href="agendar-visita.html" class="convite-cta">Agendar visita</a>
     </div>
   </div>
 </header>
 
 <section>
   <div class="container">
-    <p class="eyebrow">O ano da vinha</p>
-    <h2>Uma técnica inovadora que está transformando a serra do Rio</h2>
-    <p>A dupla poda torna a Villa Arouca rara: colheita de verão de uvas vitilabrusca e colheita no inverno de uvas vitiviníferas, num terroir único, com boa amplitude térmica e dias secos e ensolarados característicos da Serra Fluminense.</p>
-    <div class="ano-vinha">
-      <div class="estacao"><h3>Primavera</h3><span>Poda de formação</span></div>
-      <div class="estacao"><h3>Fim do Verão</h3><span>Poda de produção</span></div>
-      <div class="estacao"><h3>Outono</h3><span>Maturação</span></div>
-      <div class="estacao destaque"><h3>Fim do Inverno</h3><span>Colheita</span></div>
+    <p class="eyebrow">Endereço</p>
+    <h2>Vinícola Arouca</h2>
+    <p>A Villa Arouca fica dentro da Vinícola Arouca, junto com a Casa Vinnus.</p>
+    <p>Estr. Vila Dantas, km 5 — Vila Dantas, Areal – RJ, 25845-000<br>Acesso pela BR-040</p>
+    <a href="https://www.google.com/maps/search/?api=1&query=Vin%C3%ADcola+Arouca+Areal+RJ" target="_blank" rel="noopener" class="convite escuro" style="margin-top:1rem; display:inline-block;">Ver rota</a>
+  </div>
+
+  <div class="divisor"></div>
+
+  <div class="container">
+    <p class="eyebrow">Como chegar</p>
+    <h2>Distâncias aproximadas</h2>
+    <div class="grid-3">
+      <div class="rest-card" style="text-align:center;"><h3>~105 km</h3><p style="margin:0;">Rio de Janeiro (capital) — cerca de 1h30 pela BR-040</p></div>
+      <div class="rest-card" style="text-align:center;"><h3>~42 km</h3><p style="margin:0;">Petrópolis — cerca de 45 min pela BR-040</p></div>
+      <div class="rest-card" style="text-align:center;"><h3>~80 km</h3><p style="margin:0;">Juiz de Fora — cerca de 1h pela BR-040, via Três Rios</p></div>
     </div>
+    <p style="font-size:0.85rem; opacity:0.7; margin-top:1rem;">Distâncias e tempos aproximados por rodovia — variam conforme tráfego e ponto de partida.</p>
   </div>
 </section>
 
 <section class="vinnus-imersao">
-  <div class="container grid-2">
-    <div>
-      <p class="eyebrow">Casa Vinnus</p>
-      <h2>O tempo que começa à mesa não precisa terminar nela</h2>
-      <p>Visita guiada e degustação orientada dos rótulos da casa, harmonizada com queijos e frios da região — cerca de 1h30.</p>
-      <p style="font-size:0.85rem; color:var(--viognier); margin-top:-0.5rem;">Novidade: agora também com vinhos convidados de outras vinícolas.</p>
-      <a href="casa-vinnus.html" class="convite claro">Conhecer a Casa Vinnus</a>
-    </div>
-    <div class="foto-slot" style="min-height:420px">
-      <img src="img/casa-vinnus/casa-vinnus-hero.jpg" alt="Interior da Casa Vinnus ao entardecer, mesa posta e luz quente">
-      <div class="legenda">Casa Vinnus — ambientação</div>
+  <div class="container">
+    <p class="eyebrow">A experiência Casa Vinnus</p>
+    <h2>Visita guiada e degustação</h2>
+    <p style="max-width:60ch;">Visita guiada com degustação orientada dos rótulos da casa, harmonizada com queijos e frios da região — cerca de 1h30.</p>
+    <div class="grid-2 card-escuro-grupo" style="margin-top:2rem;">
+      <div class="card-escuro">
+        <h3 style="color:var(--branco); font-size:1.3rem;">Horários</h3>
+        <p style="opacity:0.85; margin:0;">Quinta, 14h · Sexta e sábado, 11h e 14h · Domingo, 11h</p>
+      </div>
+      <div class="card-escuro">
+        <h3 style="color:var(--branco); font-size:1.3rem;">Agendamento</h3>
+        <div style="display:flex; gap:0.8rem; flex-wrap:wrap; margin-top:0.5rem;">
+          <a href="agendar-visita.html" class="convite-cta">Agendar visita</a>
+          <a href="https://wa.me/5524998607810" target="_blank" rel="noopener" class="convite claro">WhatsApp Casa Vinnus</a>
+        </div>
+      </div>
     </div>
   </div>
 </section>
 
 <section>
-  <div class="container grid-3">
-    <div>
-      <h3>A Vinícola</h3>
-      <p>Rótulos que se destacam na colheita de inverno do nosso terroir, em três linhas: Gran Reserva, Reserva e Premium.</p>
-      <a href="a-vinicola.html">Ver mais →</a>
+  <div class="container grid-2">
+    <div class="rest-card">
+      <p class="eyebrow">Na vinícola</p>
+      <p style="margin:0;">Os vinhos degustados podem ser adquiridos na loja da propriedade para levar para casa.</p>
     </div>
-    <div>
-      <h3>Hospedagem</h3>
-      <p>Cinco cabanas completas, cada uma com duas suítes, sala de estar e varanda voltada para o pôr do sol sobre os vinhedos.</p>
-      <a href="villa-arouca.html">Ver mais →</a>
+    <div class="rest-card">
+      <p class="eyebrow">Gastronomia em Areal</p>
+      <p style="margin:0;">Reunimos os restaurantes que mais recomendamos, com endereço, horários e contato. <a href="gastronomia.html" style="text-decoration:underline;">Abrir guia →</a></p>
     </div>
-    <div>
-      <h3>Planeje sua visita</h3>
-      <p>Distâncias, políticas e tudo que você precisa saber antes de chegar à Vinícola Arouca.</p>
-      <a href="planeje.html">Ver mais →</a>
+  </div>
+</section>
+
+<section style="text-align:center;">
+  <div class="container">
+    <h2>Escolha por onde começar</h2>
+    <p style="max-width:50ch; margin:0 auto 1.5rem;">Reserve a hospedagem ou agende a visita guiada.</p>
+    <div style="display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+      <a href="villa-arouca.html" class="convite escuro">Hospedagem</a>
+      <a href="agendar-visita.html" class="convite-cta">Agendar visita</a>
     </div>
   </div>
 </section>

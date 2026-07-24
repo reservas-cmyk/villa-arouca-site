@@ -1,10 +1,255 @@
-{
-  "name": "villa-arouca-site",
-  "private": true,
-  "version": "1.0.0",
-  "type": "module",
-  "description": "Site Villa Arouca / Vinícola Arouca / Casa Vinnus — inclui Netlify Functions para o motor de reservas da visita guiada.",
-  "dependencies": {
-    "@netlify/blobs": "^8.1.0"
-  }
-}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Guia de Gastronomia | Areal, Serra Fluminense — Vinícola Arouca</title>
+<meta name="description" content="Restaurantes recomendados em Areal, Serra Fluminense, com distâncias a partir da Villa Arouca, horários e contato.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/estilo.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><img src="img/geral/logo-vinicola-arouca.png" alt="Vinícola Arouca">Vinícola Arouca</a>
+    <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false"><span></span></button>
+    <div class="nav-links">
+      <a href="index.html">Início</a>
+      <a href="a-vinicola.html">A Vinícola</a>
+      <a href="casa-vinnus.html">Casa Vinnus</a>
+      <a href="villa-arouca.html">Villa Arouca</a>
+      <a href="planeje.html">Planeje</a>
+      <a href="agendar-visita.html" class="nav-cta">Agendar visita</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" style="min-height:44vh; background-image:url('img/vinicola/vinicola-estrada.jpg')">
+  <div class="hero-content">
+    <p class="eyebrow">Areal · Serra Fluminense</p>
+    <h1>Guia de gastronomia</h1>
+    <p style="max-width:46ch;">O que mais recomendamos por perto — distâncias e tempos estimados a partir da Villa Arouca.</p>
+  </div>
+</header>
+
+<section style="padding-bottom:1rem;">
+  <div class="container">
+
+    <div class="rest-categoria">
+      <p class="rest-categoria-titulo">Alta gastronomia</p>
+      <div class="rest-grid">
+
+        <div class="rest-card">
+          <h3>Cave Ristoranti</h3>
+          <p class="rest-tipo">Cozinha contemporânea · inspiração toscana</p>
+          <div class="rest-meta">
+            <span class="estrela">★ 4,3 Google</span>
+            <span class="rest-tag">Reserva obrigatória</span>
+            <span class="rest-dist">8 km · ~14 min</span>
+          </div>
+          <div class="rest-horarios">
+            <div class="linha"><span>Café · sáb e dom</span><span>8h–11h</span></div>
+            <div class="linha"><span>Almoço · qui a dom</span><span>12h30–16h</span></div>
+            <div class="linha"><span>Jantar · sábados</span><span>18h–22h</span></div>
+            <p class="obs">Jantar disponível somente aos sábados</p>
+          </div>
+          <p class="rest-desc">Cozinha toscana, carta de vinhos extensa e ambiente reservado — bom para jantares a dois.</p>
+          <div class="rest-links">
+            <a href="https://www.instagram.com/cave.ristoranti" target="_blank" rel="noopener">Cardápio &amp; reserva</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Cave+Ristoranti+Areal+RJ" target="_blank" rel="noopener" class="handle">Ver no mapa</a>
+          </div>
+        </div>
+
+        <div class="rest-card">
+          <h3>Don Eloy Ristorante</h3>
+          <p class="rest-tipo">Cozinha contemporânea italiana · ingredientes selecionados</p>
+          <div class="rest-meta">
+            <span class="estrela">★ 4,0 Google</span>
+            <span class="rest-tag">Reserva obrigatória</span>
+            <span class="rest-dist">8 km · ~13 min</span>
+          </div>
+          <div class="rest-horarios">
+            <div class="linha"><span>Café · diariamente</span><span>8h–10h30</span></div>
+            <div class="linha"><span>Almoço · diariamente</span><span>12h–16h</span></div>
+            <div class="linha"><span>Jantar · diariamente</span><span>18h–23h</span></div>
+            <p class="obs">Reservas até 1h antes de cada serviço</p>
+          </div>
+          <p class="rest-desc">Massas frescas e cortes selecionados, carta enxuta, ambiente reservado. Taxa de reserva: R$160/mesa, convertida em consumação.</p>
+          <div class="rest-links">
+            <a href="https://www.instagram.com/doneloyristorante" target="_blank" rel="noopener">Cardápio, reserva &amp; contato</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Don+Eloy+Ristorante+Areal+RJ" target="_blank" rel="noopener" class="handle">Ver no mapa</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="rest-categoria">
+      <p class="rest-categoria-titulo">Charme &amp; conceito</p>
+      <div class="rest-grid">
+
+        <div class="rest-card">
+          <h3>La Petite Ferme</h3>
+          <p class="rest-tipo">Bistrô francês · empório</p>
+          <div class="rest-meta">
+            <span class="estrela">★ 4,1 Google</span>
+            <span class="rest-tag">Reserva recomendada</span>
+            <span class="rest-dist">7 km · ~11 min</span>
+          </div>
+          <div class="rest-horarios">
+            <div class="linha"><span>Bistrô · quinta</span><span>12h–19h</span></div>
+            <div class="linha"><span>Bistrô · sexta</span><span>12h–21h</span></div>
+            <div class="linha"><span>Bistrô · sáb e fer.</span><span>12h–22h</span></div>
+            <div class="linha"><span>Bistrô · domingo</span><span>12h–18h</span></div>
+            <div class="linha"><span>Café de la Tour · sáb/dom/fer.</span><span>9h–17h30</span></div>
+          </div>
+          <p class="rest-desc">Bistrô francês: boeuf bourguignon e trutas frescas. Funciona também como empório.</p>
+          <div class="rest-links">
+            <a href="https://www.instagram.com/lapetiteferme_" target="_blank" rel="noopener">Cardápio &amp; reserva</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=La+Petite+Ferme+Areal+RJ" target="_blank" rel="noopener" class="handle">Ver no mapa</a>
+          </div>
+        </div>
+
+        <div class="rest-card">
+          <h3>Pizzeria Borgo del Vino</h3>
+          <p class="rest-tipo">Pizzas de fermentação natural · vista para os vinhedos</p>
+          <div class="rest-meta">
+            <span class="estrela">★ 4,3 Google</span>
+            <span class="rest-tag">Reserva obrigatória</span>
+            <span class="rest-dist">8 km · ~13 min</span>
+          </div>
+          <div class="rest-horarios">
+            <div class="linha"><span>Brunch · sáb/dom/fer.</span><span>9h–13h</span></div>
+            <div class="linha"><span>À la carte · sáb/dom/fer.</span><span>13h–15h</span></div>
+            <div class="linha"><span>Jantar · qua, qui, dom</span><span>17h–22h</span></div>
+            <div class="linha"><span>Jantar · sex, sáb, fer.</span><span>17h–23h</span></div>
+          </div>
+          <p class="rest-desc">Pizzas de fermentação natural, vista aberta para os vinhedos. Taxa de reserva: R$150 (estornada via cartão).</p>
+          <div class="rest-links">
+            <a href="https://www.instagram.com/pizzeriaborgodelvino" target="_blank" rel="noopener">Cardápio &amp; reserva</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Pizzeria+Borgo+del+Vino+Areal+RJ" target="_blank" rel="noopener" class="handle">Ver no mapa</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="rest-categoria" style="margin-bottom:1rem;">
+      <p class="rest-categoria-titulo">Casual &amp; tradicional</p>
+      <div class="rest-grid">
+
+        <div class="rest-card">
+          <h3>Are Steakhouse</h3>
+          <p class="rest-tipo">Carnes &amp; churrasco · à la carte e self-service</p>
+          <div class="rest-meta">
+            <span class="estrela">★ 4,4 Google</span>
+            <span class="rest-tag">Sem reserva necessária</span>
+            <span class="rest-dist">8 km · ~14 min</span>
+          </div>
+          <div class="rest-horarios">
+            <div class="linha"><span>Seg a dom</span><span>11h–16h</span></div>
+          </div>
+          <p class="rest-desc">Cortes nobres, à la carte e self-service. Funciona só no almoço.</p>
+          <div class="rest-links">
+            <a href="https://www.instagram.com/aresteakhouse" target="_blank" rel="noopener">Instagram</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Are+Steakhouse+Areal+RJ" target="_blank" rel="noopener" class="handle">Ver no mapa</a>
+          </div>
+        </div>
+
+        <div class="rest-card">
+          <h3>Maradona's Bar &amp; Restaurante</h3>
+          <p class="rest-tipo">Culinária brasileira · petiscos · happy hour</p>
+          <div class="rest-meta">
+            <span class="estrela">★ 4,5 Google</span>
+            <span class="rest-tag">Reserva recomendada</span>
+            <span class="rest-tag">Delivery disponível</span>
+            <span class="rest-dist">8 km · ~15 min</span>
+          </div>
+          <div class="rest-horarios">
+            <div class="linha"><span>Seg a sex</span><span>18h30–23h30</span></div>
+            <div class="linha"><span>Sábado</span><span>18h30–23h25</span></div>
+            <div class="linha"><span>Domingo</span><span>18h30–23h20</span></div>
+          </div>
+          <p class="rest-desc">Tradicional em Areal. Porções, carnes e petiscos, happy hour e jantar até tarde.</p>
+          <div class="rest-links">
+            <a href="https://www.instagram.com/maradonas_bar" target="_blank" rel="noopener">Cardápio, delivery &amp; reserva</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Maradona%27s+Bar+Areal+RJ" target="_blank" rel="noopener" class="handle">Ver no mapa</a>
+          </div>
+        </div>
+
+        <div class="rest-card">
+          <h3>Vovó Celeste</h3>
+          <p class="rest-tipo">Comida caseira · tradição familiar desde 1991</p>
+          <div class="rest-meta">
+            <span class="estrela">★ 4,6 Google</span>
+            <span class="rest-tag">Sem reserva necessária</span>
+            <span class="rest-dist">8 km · ~14 min</span>
+          </div>
+          <div class="rest-horarios">
+            <div class="linha"><span>Seg a qui e dom</span><span>9h–17h</span></div>
+            <div class="linha"><span>Sexta e sábado</span><span>9h–20h</span></div>
+          </div>
+          <p class="rest-desc">Referência em comida caseira farta na região. Famoso pudim da vovó e feijoada aos finais de semana.</p>
+          <div class="rest-links">
+            <a href="tel:+552422572452">Ligar</a>
+            <a href="https://www.instagram.com/vovocelesterestaurante" target="_blank" rel="noopener" class="handle">Instagram</a>
+            <a href="https://www.google.com/maps/search/?api=1&query=Pra%C3%A7a+Presidente+Castelo+Branco+32+Centro+Areal+RJ" target="_blank" rel="noopener" class="handle">Ver no mapa</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <div style="text-align:center; padding-top:1rem;">
+      <a href="docs/guia-gastronomico-areal.pdf" target="_blank" class="convite escuro">Baixar guia em PDF</a>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <p style="font-family:var(--serif); font-size:1.2rem; margin-bottom:0.5rem;">Villa Arouca</p>
+        <p style="font-size:0.82rem; opacity:0.7; margin-bottom:0.7rem;">A Villa Arouca está localizada dentro da Vinícola Arouca.</p>
+        <p>Vinícola Arouca<br>Fazenda Boavista — Estr. Vila Dantas, km 5<br>Vila Dantas, Areal – RJ, 25845-000</p>
+      </div>
+      <div>
+        <h4>Reservas</h4>
+        <p><a href="tel:+552120423554">21 2042-3554</a></p>
+        <p><a href="tel:+5522999071437">22 99907-1437</a></p>
+        <p><a href="mailto:reservas@villaarouca.com.br">reservas@villaarouca.com.br</a></p>
+      </div>
+      <div>
+        <h4>Siga</h4>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/vinicolaarouca" target="_blank" rel="noopener" aria-label="Instagram da Vinícola Arouca">
+            <svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.06 2.2.27 3 .58a5.9 5.9 0 0 1 2.1 1.4 5.9 5.9 0 0 1 1.4 2.1c.3.8.5 1.8.6 3 .06 1.3.07 1.7.07 4.9s0 3.6-.07 4.9c-.06 1.2-.27 2.2-.58 3a5.9 5.9 0 0 1-1.4 2.1 5.9 5.9 0 0 1-2.1 1.4c-.8.3-1.8.5-3 .58-1.3.06-1.7.07-4.9.07s-3.6 0-4.9-.07c-1.2-.06-2.2-.27-3-.58a5.9 5.9 0 0 1-2.1-1.4 5.9 5.9 0 0 1-1.4-2.1c-.3-.8-.5-1.8-.58-3C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.9c.06-1.2.27-2.2.58-3a5.9 5.9 0 0 1 1.4-2.1 5.9 5.9 0 0 1 2.1-1.4c.8-.3 1.8-.5 3-.58C8.4 2.2 8.8 2.2 12 2.2m0 2.16c-3.15 0-3.52 0-4.76.07-1.15.05-1.77.24-2.18.4-.55.21-.94.47-1.35.88-.4.4-.67.8-.88 1.35-.16.4-.35 1.03-.4 2.18-.06 1.24-.07 1.6-.07 4.76s0 3.52.07 4.76c.05 1.15.24 1.77.4 2.18.21.55.47.94.88 1.35.4.4.8.67 1.35.88.4.16 1.03.35 2.18.4 1.24.06 1.6.07 4.76.07s3.52 0 4.76-.07c1.15-.05 1.77-.24 2.18-.4.55-.21.94-.47 1.35-.88.4-.4.67-.8.88-1.35.16-.4.35-1.03.4-2.18.06-1.24.07-1.6.07-4.76s0-3.52-.07-4.76c-.05-1.15-.24-1.77-.4-2.18a3.7 3.7 0 0 0-.88-1.35 3.7 3.7 0 0 0-1.35-.88c-.4-.16-1.03-.35-2.18-.4-1.24-.06-1.6-.07-4.76-.07M12 6.9a5.1 5.1 0 1 1 0 10.2 5.1 5.1 0 0 1 0-10.2m0 2.16a2.94 2.94 0 1 0 0 5.88 2.94 2.94 0 0 0 0-5.88m5.3-2.4a1.19 1.19 0 1 1-2.38 0 1.19 1.19 0 0 1 2.38 0"/></svg>
+          </a>
+          <a href="https://www.instagram.com/casavinnus" target="_blank" rel="noopener" aria-label="Instagram da Casa Vinnus">
+            <svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.06 2.2.27 3 .58a5.9 5.9 0 0 1 2.1 1.4 5.9 5.9 0 0 1 1.4 2.1c.3.8.5 1.8.6 3 .06 1.3.07 1.7.07 4.9s0 3.6-.07 4.9c-.06 1.2-.27 2.2-.58 3a5.9 5.9 0 0 1-1.4 2.1 5.9 5.9 0 0 1-2.1 1.4c-.8.3-1.8.5-3 .58-1.3.06-1.7.07-4.9.07s-3.6 0-4.9-.07c-1.2-.06-2.2-.27-3-.58a5.9 5.9 0 0 1-2.1-1.4 5.9 5.9 0 0 1-1.4-2.1c-.3-.8-.5-1.8-.58-3C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.9c.06-1.2.27-2.2.58-3a5.9 5.9 0 0 1 1.4-2.1 5.9 5.9 0 0 1 2.1-1.4c.8-.3 1.8-.5 3-.58C8.4 2.2 8.8 2.2 12 2.2m0 2.16c-3.15 0-3.52 0-4.76.07-1.15.05-1.77.24-2.18.4-.55.21-.94.47-1.35.88-.4.4-.67.8-.88 1.35-.16.4-.35 1.03-.4 2.18-.06 1.24-.07 1.6-.07 4.76s0 3.52.07 4.76c.05 1.15.24 1.77.4 2.18.21.55.47.94.88 1.35.4.4.8.67 1.35.88.4.16 1.03.35 2.18.4 1.24.06 1.6.07 4.76.07s3.52 0 4.76-.07c1.15-.05 1.77-.24 2.18-.4.55-.21.94-.47 1.35-.88.4-.4.67-.8.88-1.35.16-.4.35-1.03.4-2.18.06-1.24.07-1.6.07-4.76s0-3.52-.07-4.76c-.05-1.15-.24-1.77-.4-2.18a3.7 3.7 0 0 0-.88-1.35 3.7 3.7 0 0 0-1.35-.88c-.4-.16-1.03-.35-2.18-.4-1.24-.06-1.6-.07-4.76-.07M12 6.9a5.1 5.1 0 1 1 0 10.2 5.1 5.1 0 0 1 0-10.2m0 2.16a2.94 2.94 0 1 0 0 5.88 2.94 2.94 0 0 0 0-5.88m5.3-2.4a1.19 1.19 0 1 1-2.38 0 1.19 1.19 0 0 1 2.38 0"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bz">
+      <p style="font-family:var(--serif); font-size:1rem; letter-spacing:1px; margin-bottom:0.8rem; opacity:0.85;">VINÍCOLA AROUCA &nbsp;·&nbsp; CASA VINNUS &nbsp;·&nbsp; VILLA AROUCA</p>
+      <p>Uma empresa do <a href="https://grupobz.com.br/" target="_blank" rel="noopener">Grupo BZ</a> &nbsp;·&nbsp; <a href="admin-reservas.html" style="opacity:0.8; font-size:0.8rem; text-decoration:underline;">Administrativo</a></p>
+    </div>
+  </div>
+</footer>
+
+<a href="agendar-visita.html" class="agendar-flutuante">
+  <svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg>
+  Agendar visita
+</a>
+<a href="https://wa.me/5522999071437" target="_blank" rel="noopener" class="whats-flutuante" aria-label="Falar no WhatsApp com a Central de Reservas">
+  <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.15-1.7-.85-2-.95-.27-.1-.46-.15-.66.15-.2.3-.75.95-.92 1.14-.17.2-.34.22-.63.07-.3-.15-1.24-.46-2.36-1.46-.87-.78-1.46-1.74-1.63-2.03-.17-.3-.02-.46.13-.6.13-.13.3-.34.44-.5.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.66-1.6-.9-2.2-.24-.58-.48-.5-.66-.5h-.56c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.5.71.3 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.7-.7 1.94-1.37.24-.68.24-1.26.17-1.38-.07-.13-.26-.2-.56-.35zM12.02 22a9.9 9.9 0 0 1-5.05-1.38L3 21.6l1.02-3.83A9.9 9.9 0 1 1 12.02 22z"/></svg>
+</a>
+
+<script src="js/nav.js" defer></script>
+</body>
+</html>

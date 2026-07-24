@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Villa Arouca | Vinícola, Hospedagem e Casa Vinnus — Areal, Serra Fluminense</title>
-<meta name="description" content="Villa Arouca: vinícola, hospedagem e a experiência enogastronômica da Casa Vinnus na Serra Fluminense, Areal, RJ.">
+<title>Villa Arouca | Hospedagem na Serra Fluminense</title>
+<meta name="description" content="Cinco cabanas completas com vista para os vinhedos da Serra Fluminense, em Areal, RJ.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/estilo.css">
@@ -16,80 +16,81 @@
     <a href="index.html" class="nav-logo"><img src="img/geral/logo-vinicola-arouca.png" alt="Vinícola Arouca">Vinícola Arouca</a>
     <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false"><span></span></button>
     <div class="nav-links">
-      <a href="index.html" aria-current="page">Início</a>
+      <a href="index.html">Início</a>
       <a href="a-vinicola.html">A Vinícola</a>
       <a href="casa-vinnus.html">Casa Vinnus</a>
-      <a href="villa-arouca.html">Villa Arouca</a>
+      <a href="villa-arouca.html" aria-current="page">Villa Arouca</a>
       <a href="planeje.html">Planeje</a>
       <a href="agendar-visita.html" class="nav-cta">Agendar visita</a>
     </div>
   </div>
 </nav>
 
-<header class="hero-suave" style="background-image:url('img/vinicola/vinhedo-corredor-arvore.jpg')">
-  <video class="hero-video-mobile" autoplay muted loop playsinline poster="img/vinicola/vinhedo-corredor-arvore.jpg">
-    <source src="video/hero-mobile.mp4" type="video/mp4">
-  </video>
-  <div class="hero-suave-content">
-    <span class="eyebrow">Vinícola Arouca · Areal, Serra Fluminense</span>
-    <h1>O vinhedo, o vinho, a taça e momentos de puro êxtase.</h1>
-    <div class="trio-suave">
-      <a href="a-vinicola.html">A Vinícola</a>
-      <span class="ponto">·</span>
-      <a href="casa-vinnus.html">Casa Vinnus</a>
-      <span class="ponto">·</span>
-      <a href="villa-arouca.html">Villa Arouca</a>
-    </div>
+<header class="hero" style="min-height:70vh; background-image:url('img/hospedagem/varanda-1.jpg')">
+  <div class="hero-content">
+    <p class="eyebrow">Cinco cabanas, uma serra</p>
+    <h1>A calma da Serra Fluminense, com os vinhedos como vizinhos.</h1>
   </div>
 </header>
 
 <section>
   <div class="container">
-    <p class="eyebrow">O ano da vinha</p>
-    <h2>Uma técnica inovadora que está transformando a serra do Rio</h2>
-    <p>A dupla poda torna a Villa Arouca rara: colheita de verão de uvas vitilabrusca e colheita no inverno de uvas vitiviníferas, num terroir único, com boa amplitude térmica e dias secos e ensolarados característicos da Serra Fluminense.</p>
-    <div class="ano-vinha">
-      <div class="estacao"><h3>Primavera</h3><span>Poda de formação</span></div>
-      <div class="estacao"><h3>Fim do Verão</h3><span>Poda de produção</span></div>
-      <div class="estacao"><h3>Outono</h3><span>Maturação</span></div>
-      <div class="estacao destaque"><h3>Fim do Inverno</h3><span>Colheita</span></div>
-    </div>
+    <p class="eyebrow">As cabanas</p>
+    <h2>Cinco unidades, sempre alugadas por inteiro</h2>
+    <p>Cada cabana tem duas suítes, sala de estar, mini cozinha e varanda com vista para o pôr do sol — sem locação por suíte avulsa.</p>
   </div>
 </section>
 
+<section class="grid-3 container">
+  <div class="foto-slot"><img src="img/hospedagem/quarto-1.jpg" alt="Quarto de cabana da Villa Arouca"><div class="legenda">Villa Arouca — suíte</div></div>
+  <div class="foto-slot"><img src="img/hospedagem/sala-1.jpg" alt="Sala de estar de cabana da Villa Arouca"><div class="legenda">Villa Arouca — sala de estar</div></div>
+  <div class="foto-slot"><img src="img/hospedagem/varanda-2.jpg" alt="Varanda de cabana da Villa Arouca"><div class="legenda">Villa Arouca — varanda</div></div>
+</section>
+
 <section class="vinnus-imersao">
-  <div class="container grid-2">
-    <div>
-      <p class="eyebrow">Casa Vinnus</p>
-      <h2>O tempo que começa à mesa não precisa terminar nela</h2>
-      <p>Visita guiada e degustação orientada dos rótulos da casa, harmonizada com queijos e frios da região — cerca de 1h30.</p>
-      <p style="font-size:0.85rem; color:var(--viognier); margin-top:-0.5rem;">Novidade: agora também com vinhos convidados de outras vinícolas.</p>
-      <a href="casa-vinnus.html" class="convite claro">Conhecer a Casa Vinnus</a>
+  <div class="container">
+    <p class="eyebrow">Políticas</p>
+    <h2>O que você precisa saber antes de reservar</h2>
+    <div class="politicas-lista">
+      <div class="politica-item">
+        <span class="rotulo">Ocupação</span>
+        <p>Cada cabana é reservada por inteiro, com ocupação definida no ato da reserva.</p>
+      </div>
+      <div class="politica-item">
+        <span class="rotulo">Atmosfera</span>
+        <p>Voltada para maiores de 15 anos, para preservar o silêncio das montanhas.</p>
+      </div>
+      <div class="politica-item">
+        <span class="rotulo">Pets</span>
+        <p>Aceitamos 1 pet por cabana, até 25kg — avisar no momento da reserva. Taxa aplicável.</p>
+      </div>
+      <div class="politica-item">
+        <span class="rotulo">Café da manhã</span>
+        <p>Incluído na hospedagem, servido à la carte na Casa Vinnus.</p>
+      </div>
+      <div class="politica-item">
+        <span class="rotulo">Tarifa flexível</span>
+        <p>Cancelamento gratuito até 7 dias antes (baixa temporada) ou 15 dias (alta temporada). 20% do valor total pago no ato da reserva.</p>
+      </div>
+      <div class="politica-item">
+        <span class="rotulo">Tarifa não reembolsável</span>
+        <p>15% mais econômica, sem possibilidade de cancelamento. 100% pago no ato da reserva.</p>
+      </div>
     </div>
-    <div class="foto-slot" style="min-height:420px">
-      <img src="img/casa-vinnus/casa-vinnus-hero.jpg" alt="Interior da Casa Vinnus ao entardecer, mesa posta e luz quente">
-      <div class="legenda">Casa Vinnus — ambientação</div>
-    </div>
+  </div>
+  <div class="divisor"></div>
+  <div class="container">
+    <p class="eyebrow">Antes de chegar</p>
+    <h3>Precisamos de algumas informações suas</h3>
+    <p style="max-width:60ch;">Para deixar tudo pronto, envie pelo <a href="https://wa.me/5561983468999" target="_blank" rel="noopener" style="text-decoration:underline; color:var(--branco);">WhatsApp</a>: horário previsto de chegada, nome e documentos de todos os hóspedes.</p>
   </div>
 </section>
 
 <section>
-  <div class="container grid-3">
-    <div>
-      <h3>A Vinícola</h3>
-      <p>Rótulos que se destacam na colheita de inverno do nosso terroir, em três linhas: Gran Reserva, Reserva e Premium.</p>
-      <a href="a-vinicola.html">Ver mais →</a>
-    </div>
-    <div>
-      <h3>Hospedagem</h3>
-      <p>Cinco cabanas completas, cada uma com duas suítes, sala de estar e varanda voltada para o pôr do sol sobre os vinhedos.</p>
-      <a href="villa-arouca.html">Ver mais →</a>
-    </div>
-    <div>
-      <h3>Planeje sua visita</h3>
-      <p>Distâncias, políticas e tudo que você precisa saber antes de chegar à Vinícola Arouca.</p>
-      <a href="planeje.html">Ver mais →</a>
-    </div>
+  <div class="container" style="text-align:center;">
+    <h2>Consultar datas</h2>
+    <p style="max-width:50ch; margin:0 auto 1.5rem;">Combine sua estadia com a experiência da Casa Vinnus e a visita à vinícola.</p>
+    <a href="reservar-hospedagem.html" class="convite escuro">Hospedagem</a>
   </div>
 </section>
 
