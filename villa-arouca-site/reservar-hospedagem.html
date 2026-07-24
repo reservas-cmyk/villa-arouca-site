@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reservar hospedagem | Villa Arouca</title>
+<meta name="description" content="Reserve sua estadia na Villa Arouca, Areal, Serra Fluminense.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/estilo.css">
+<style>
+  .form-card {
+    max-width: 560px;
+    margin: 0 auto;
+    background: var(--branco);
+    border: 1px solid rgba(36,28,24,0.1);
+    border-radius: 4px;
+    padding: clamp(1.5rem, 5vw, 3rem);
+  }
+  .campo { margin-bottom: 1.4rem; }
+  .campo label {
+    display: block;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--syrah);
+    margin-bottom: 0.5rem;
+  }
+  .campo input, .campo textarea {
+    width: 100%;
+    font-family: var(--sans);
+    font-size: 1rem;
+    padding: 0.75rem 0.9rem;
+    border: 1px solid rgba(36,28,24,0.2);
+    border-radius: 3px;
+    background: var(--cal);
+    color: var(--tinta);
+  }
+  .campo input:focus, .campo textarea:focus {
+    outline: none;
+    border-color: var(--syrah);
+  }
+  .linha-dupla { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  @media (max-width: 560px) { .linha-dupla { grid-template-columns: 1fr; } }
+  .btn-enviar {
+    width: 100%;
+    padding: 1rem;
+    background: var(--syrah);
+    color: var(--branco);
+    border: none;
+    font-size: 0.85rem;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-top: 0.5rem;
+  }
+  .btn-enviar:hover { background: var(--syrah-profundo); }
+  .alt-reserva {
+    max-width: 560px;
+    margin: 2rem auto 0;
+    text-align: center;
+    padding-top: 1.5rem;
+    border-top: 1px solid rgba(36,28,24,0.1);
+  }
+  .btn-booking {
+    display: inline-block;
+    margin-top: 0.8rem;
+    padding: 0.85rem 1.8rem;
+    border: 1px solid var(--vinha);
+    color: var(--vinha);
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+  .btn-booking:hover { background: var(--vinha); color: var(--branco); }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo"><img src="img/geral/logo-vinicola-arouca.png" alt="Vinícola Arouca">Vinícola Arouca</a>
+    <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false"><span></span></button>
+    <div class="nav-links">
+      <a href="index.html">Início</a>
+      <a href="a-vinicola.html">A Vinícola</a>
+      <a href="casa-vinnus.html">Casa Vinnus</a>
+      <a href="villa-arouca.html" aria-current="page">Villa Arouca</a>
+      <a href="planeje.html">Planeje</a>
+      <a href="agendar-visita.html" class="nav-cta">Agendar visita</a>
+    </div>
+  </div>
+</nav>
+
+<section style="padding-top: clamp(3rem, 6vw, 5rem);">
+  <div class="container">
+    <p class="eyebrow" style="text-align:center;">Hospedagem</p>
+    <h2 style="text-align:center; margin-bottom:0.6rem;">Sua chegada à Villa Arouca</h2>
+    <p style="text-align:center; max-width:46ch; margin:0 auto 2.5rem;">Preencha os dados abaixo. A Central de Reservas responde com disponibilidade e valores.</p>
+
+    <form id="form-reserva" class="form-card">
+      <div class="campo">
+        <label for="nome">Nome</label>
+        <input type="text" id="nome" required placeholder="Seu nome completo">
+      </div>
+
+      <div class="linha-dupla">
+        <div class="campo">
+          <label for="checkin">Chegada</label>
+          <input type="date" id="checkin" required>
+        </div>
+        <div class="campo">
+          <label for="checkout">Saída</label>
+          <input type="date" id="checkout" required>
+        </div>
+      </div>
+
+      <div class="campo">
+        <label for="pessoas">Número de pessoas</label>
+        <input type="number" id="pessoas" min="1" max="4" required placeholder="Até 4 por cabana">
+      </div>
+
+      <div class="campo">
+        <label for="obs">Observações (opcional)</label>
+        <textarea id="obs" rows="3" placeholder="Vai com pet? Alguma preferência?"></textarea>
+      </div>
+
+      <button type="submit" class="btn-enviar">Enviar solicitação</button>
+    </form>
+
+    <div class="alt-reserva">
+      <p style="font-size:0.9rem; color:var(--tinta); opacity:0.75;">Prefere outro canal?</p>
+      <a href="#" id="link-booking" class="btn-booking" target="_blank" rel="noopener">Reservar pela Booking.com</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <p style="font-family:var(--serif); font-size:1.2rem; margin-bottom:0.5rem;">Villa Arouca</p>
+        <p style="font-size:0.82rem; opacity:0.7; margin-bottom:0.7rem;">A Villa Arouca está localizada dentro da Vinícola Arouca.</p>
+        <p>Vinícola Arouca<br>Fazenda Boavista — Estr. Vila Dantas, km 5<br>Vila Dantas, Areal – RJ, 25845-000</p>
+      </div>
+      <div>
+        <h4>Reservas</h4>
+        <p><a href="tel:+552120423554">21 2042-3554</a></p>
+        <p><a href="tel:+5522999071437">22 99907-1437</a></p>
+        <p><a href="mailto:reservas@villaarouca.com.br">reservas@villaarouca.com.br</a></p>
+      </div>
+      <div>
+        <h4>Siga</h4>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/vinicolaarouca" target="_blank" rel="noopener" aria-label="Instagram da Vinícola Arouca">
+            <svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.06 2.2.27 3 .58a5.9 5.9 0 0 1 2.1 1.4 5.9 5.9 0 0 1 1.4 2.1c.3.8.5 1.8.6 3 .06 1.3.07 1.7.07 4.9s0 3.6-.07 4.9c-.06 1.2-.27 2.2-.58 3a5.9 5.9 0 0 1-1.4 2.1 5.9 5.9 0 0 1-2.1 1.4c-.8.3-1.8.5-3 .58-1.3.06-1.7.07-4.9.07s-3.6 0-4.9-.07c-1.2-.06-2.2-.27-3-.58a5.9 5.9 0 0 1-2.1-1.4 5.9 5.9 0 0 1-1.4-2.1c-.3-.8-.5-1.8-.58-3C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.9c.06-1.2.27-2.2.58-3a5.9 5.9 0 0 1 1.4-2.1 5.9 5.9 0 0 1 2.1-1.4c.8-.3 1.8-.5 3-.58C8.4 2.2 8.8 2.2 12 2.2m0 2.16c-3.15 0-3.52 0-4.76.07-1.15.05-1.77.24-2.18.4-.55.21-.94.47-1.35.88-.4.4-.67.8-.88 1.35-.16.4-.35 1.03-.4 2.18-.06 1.24-.07 1.6-.07 4.76s0 3.52.07 4.76c.05 1.15.24 1.77.4 2.18.21.55.47.94.88 1.35.4.4.8.67 1.35.88.4.16 1.03.35 2.18.4 1.24.06 1.6.07 4.76.07s3.52 0 4.76-.07c1.15-.05 1.77-.24 2.18-.4.55-.21.94-.47 1.35-.88.4-.4.67-.8.88-1.35.16-.4.35-1.03.4-2.18.06-1.24.07-1.6.07-4.76s0-3.52-.07-4.76c-.05-1.15-.24-1.77-.4-2.18a3.7 3.7 0 0 0-.88-1.35 3.7 3.7 0 0 0-1.35-.88c-.4-.16-1.03-.35-2.18-.4-1.24-.06-1.6-.07-4.76-.07M12 6.9a5.1 5.1 0 1 1 0 10.2 5.1 5.1 0 0 1 0-10.2m0 2.16a2.94 2.94 0 1 0 0 5.88 2.94 2.94 0 0 0 0-5.88m5.3-2.4a1.19 1.19 0 1 1-2.38 0 1.19 1.19 0 0 1 2.38 0"/></svg>
+          </a>
+          <a href="https://www.instagram.com/casavinnus" target="_blank" rel="noopener" aria-label="Instagram da Casa Vinnus">
+            <svg viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 1.2.06 2.2.27 3 .58a5.9 5.9 0 0 1 2.1 1.4 5.9 5.9 0 0 1 1.4 2.1c.3.8.5 1.8.6 3 .06 1.3.07 1.7.07 4.9s0 3.6-.07 4.9c-.06 1.2-.27 2.2-.58 3a5.9 5.9 0 0 1-1.4 2.1 5.9 5.9 0 0 1-2.1 1.4c-.8.3-1.8.5-3 .58-1.3.06-1.7.07-4.9.07s-3.6 0-4.9-.07c-1.2-.06-2.2-.27-3-.58a5.9 5.9 0 0 1-2.1-1.4 5.9 5.9 0 0 1-1.4-2.1c-.3-.8-.5-1.8-.58-3C2.2 15.6 2.2 15.2 2.2 12s0-3.6.07-4.9c.06-1.2.27-2.2.58-3a5.9 5.9 0 0 1 1.4-2.1 5.9 5.9 0 0 1 2.1-1.4c.8-.3 1.8-.5 3-.58C8.4 2.2 8.8 2.2 12 2.2m0 2.16c-3.15 0-3.52 0-4.76.07-1.15.05-1.77.24-2.18.4-.55.21-.94.47-1.35.88-.4.4-.67.8-.88 1.35-.16.4-.35 1.03-.4 2.18-.06 1.24-.07 1.6-.07 4.76s0 3.52.07 4.76c.05 1.15.24 1.77.4 2.18.21.55.47.94.88 1.35.4.4.8.67 1.35.88.4.16 1.03.35 2.18.4 1.24.06 1.6.07 4.76.07s3.52 0 4.76-.07c1.15-.05 1.77-.24 2.18-.4.55-.21.94-.47 1.35-.88.4-.4.67-.8.88-1.35.16-.4.35-1.03.4-2.18.06-1.24.07-1.6.07-4.76s0-3.52-.07-4.76c-.05-1.15-.24-1.77-.4-2.18a3.7 3.7 0 0 0-.88-1.35 3.7 3.7 0 0 0-1.35-.88c-.4-.16-1.03-.35-2.18-.4-1.24-.06-1.6-.07-4.76-.07M12 6.9a5.1 5.1 0 1 1 0 10.2 5.1 5.1 0 0 1 0-10.2m0 2.16a2.94 2.94 0 1 0 0 5.88 2.94 2.94 0 0 0 0-5.88m5.3-2.4a1.19 1.19 0 1 1-2.38 0 1.19 1.19 0 0 1 2.38 0"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bz">
+      <p style="font-family:var(--serif); font-size:1rem; letter-spacing:1px; margin-bottom:0.8rem; opacity:0.85;">VINÍCOLA AROUCA &nbsp;·&nbsp; CASA VINNUS &nbsp;·&nbsp; VILLA AROUCA</p>
+      <p>Uma empresa do <a href="https://grupobz.com.br/" target="_blank" rel="noopener">Grupo BZ</a> &nbsp;·&nbsp; <a href="admin-reservas.html" style="opacity:0.8; font-size:0.8rem; text-decoration:underline;">Administrativo</a></p>
+    </div>
+  </div>
+</footer>
+
+<a href="agendar-visita.html" class="agendar-flutuante">
+  <svg viewBox="0 0 24 24"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg>
+  Agendar visita
+</a>
+<a href="https://wa.me/5522999071437" target="_blank" rel="noopener" class="whats-flutuante" aria-label="Falar no WhatsApp com a Central de Reservas">
+  <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.15-1.7-.85-2-.95-.27-.1-.46-.15-.66.15-.2.3-.75.95-.92 1.14-.17.2-.34.22-.63.07-.3-.15-1.24-.46-2.36-1.46-.87-.78-1.46-1.74-1.63-2.03-.17-.3-.02-.46.13-.6.13-.13.3-.34.44-.5.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.66-1.6-.9-2.2-.24-.58-.48-.5-.66-.5h-.56c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.5.71.3 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.7-.7 1.94-1.37.24-.68.24-1.26.17-1.38-.07-.13-.26-.2-.56-.35zM12.02 22a9.9 9.9 0 0 1-5.05-1.38L3 21.6l1.02-3.83A9.9 9.9 0 1 1 12.02 22z"/></svg>
+</a>
+
+<script src="js/nav.js" defer></script>
+<script>
+  var WHATSAPP_RESERVAS = "5522999071437";
+  var LINK_BOOKING = "https://www.booking.com/hotel/br/villa-arouca-areal.pt-br.html";
+
+  var linkBooking = document.getElementById('link-booking');
+  linkBooking.href = LINK_BOOKING;
+
+  var checkinEl = document.getElementById('checkin');
+  var checkoutEl = document.getElementById('checkout');
+
+  function addDias(dataStr, dias) {
+    var d = new Date(dataStr + 'T00:00:00');
+    d.setDate(d.getDate() + dias);
+    return d.toISOString().split('T')[0];
+  }
+
+  checkinEl.addEventListener('change', function () {
+    if (checkinEl.value) {
+      var minSaida = addDias(checkinEl.value, 1);
+      checkoutEl.min = minSaida;
+      if (!checkoutEl.value || checkoutEl.value <= checkinEl.value) {
+        checkoutEl.value = minSaida;
+      }
+    }
+  });
+
+  document.getElementById('form-reserva').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var nome = document.getElementById('nome').value.trim();
+    var checkin = checkinEl.value;
+    var checkout = checkoutEl.value;
+    var pessoas = document.getElementById('pessoas').value;
+    var obs = document.getElementById('obs').value.trim();
+
+    function formatarData(d) {
+      if (!d) return '';
+      var partes = d.split('-');
+      return partes[2] + '/' + partes[1] + '/' + partes[0];
+    }
+
+    var mensagem = "Olá! Gostaria de reservar uma cabana na Villa Arouca.\n" +
+      "Nome: " + nome + "\n" +
+      "Chegada: " + formatarData(checkin) + "\n" +
+      "Saída: " + formatarData(checkout) + "\n" +
+      "Número de pessoas: " + pessoas +
+      (obs ? "\nObservações: " + obs : "");
+
+    var url = "https://wa.me/" + WHATSAPP_RESERVAS + "?text=" + encodeURIComponent(mensagem);
+    window.open(url, '_blank');
+  });
+</script>
+
+</body>
+</html>
