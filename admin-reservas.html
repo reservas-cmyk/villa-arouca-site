@@ -1,194 +1,241 @@
-import { getStore } from "@netlify/blobs";
-
-function montarVoucherHtml(item, chave) {
-  const [data, horario] = chave.split("_");
-  const dataFormatada = data.split("-").reverse().join("/");
-  return `<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="pt-BR">
-<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
-<body style="margin:0; padding:0;">
-  <div style="background:#F5F2EA; padding:32px 16px; font-family: Georgia, 'Times New Roman', serif;">
-    <div style="max-width:480px; margin:0 auto; background:#FFFFFF; border:1px solid #D8D3C4;">
-      <div style="background:linear-gradient(135deg,#551314,#380D0D); padding:28px 32px; text-align:center;">
-        <p style="color:#BA933C; text-transform:uppercase; letter-spacing:3px; font-size:11px; margin:0 0 6px;">Vinícola Arouca</p>
-        <p style="color:#FFFFFF; font-size:20px; margin:0;">Casa Vinnus</p>
-      </div>
-      <div style="padding:32px;">
-        <p style="text-transform:uppercase; letter-spacing:2px; font-size:11px; color:#BA933C; margin:0 0 6px;">Reserva confirmada</p>
-        <h1 style="color:#551314; font-size:26px; font-weight:400; margin:0 0 24px;">Visita guiada com degustação</h1>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Painel de Reservas | Casa Vinnus</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/estilo.css">
+<style>
+  body { background: var(--cal); }
+  .painel-wrap { max-width: 1000px; margin: 0 auto; padding: 2rem 1.2rem 4rem; }
+  .login-card {
+    max-width: 380px; margin: 4rem auto; background: var(--branco);
+    border: 1px solid rgba(70,66,68,0.15); border-radius: 4px; padding: 2rem;
+    text-align: center;
+  }
+  .login-card input {
+    width: 100%; padding: 0.75rem 0.9rem; margin: 1rem 0;
+    border: 1px solid rgba(70,66,68,0.25); border-radius: 3px; font-size: 1rem;
+  }
+  .login-card button, .filtro-form button {
+    background: var(--syrah); color: var(--branco); border: none;
+    padding: 0.75rem 1.5rem; border-radius: 3px; cursor: pointer;
+    text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem;
+  }
+  .filtro-form { display: flex; gap: 0.8rem; align-items: end; flex-wrap: wrap; margin-bottom: 2rem; }
+  .filtro-form label { display: block; font-size: 0.75rem; text-transform: uppercase; color: var(--syrah); margin-bottom: 0.3rem; }
+  .filtro-form input { padding: 0.6rem 0.8rem; border: 1px solid rgba(70,66,68,0.25); border-radius: 3px; }
+  .turma-card {
+    background: var(--branco); border: 1px solid rgba(70,66,68,0.15); border-radius: 4px;
+    padding: 1.3rem 1.5rem; margin-bottom: 1.2rem;
+  }
+  .turma-topo { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; padding-bottom: 0.8rem; border-bottom: 1px solid rgba(70,66,68,0.1); }
+  .turma-topo h3 { font-size: 1.2rem; margin: 0; }
+  .turma-vagas { font-size: 0.8rem; color: var(--granito); }
+  table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+  th { text-align: left; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--granito); padding: 0.4rem 0.6rem; }
+  td { padding: 0.5rem 0.6rem; border-top: 1px solid rgba(70,66,68,0.08); }
+  .tag { display: inline-block; padding: 0.15rem 0.55rem; border-radius: 20px; font-size: 0.7rem; }
+  .tag.confirmado { background: #EAF0E2; color: var(--vinha); }
+  .tag.pendente { background: #FDF3DC; color: #8a6d1a; }
+  .tag.pendente_manual { background: #F5E4E1; color: var(--syrah-profundo); }
+  .tag.teste { background: #E4E9F5; color: #34477a; margin-left: 0.4rem; }
+  .vazio { text-align: center; opacity: 0.6; padding: 3rem 0; }
+</style>
+</head>
+<body>
 
-        <table style="width:100%; border-collapse:collapse; font-family: Arial, sans-serif; font-size:14px; color:#464244;">
-          <tr><td style="padding:8px 0; border-bottom:1px solid #EEE;">Data</td><td style="padding:8px 0; border-bottom:1px solid #EEE; text-align:right;"><strong>${dataFormatada}</strong></td></tr>
-          <tr><td style="padding:8px 0; border-bottom:1px solid #EEE;">Horário</td><td style="padding:8px 0; border-bottom:1px solid #EEE; text-align:right;"><strong>${horario}</strong></td></tr>
-          <tr><td style="padding:8px 0; border-bottom:1px solid #EEE;">Nome</td><td style="padding:8px 0; border-bottom:1px solid #EEE; text-align:right;">${item.nome}</td></tr>
-          <tr><td style="padding:8px 0; border-bottom:1px solid #EEE;">Pessoas</td><td style="padding:8px 0; border-bottom:1px solid #EEE; text-align:right;">${item.pessoas}</td></tr>
-          <tr><td style="padding:8px 0; border-bottom:1px solid #EEE;">Degustação</td><td style="padding:8px 0; border-bottom:1px solid #EEE; text-align:right;">${item.tipoDegustacao === "vinho" ? "Vinho" : "Suco (sem álcool)"}</td></tr>
-          <tr><td style="padding:8px 0;">Valor pago</td><td style="padding:8px 0; text-align:right;"><strong>R$ ${item.valorTotal}</strong></td></tr>
-        </table>
-
-        <div style="margin-top:28px; padding:16px 18px; background:#F5F2EA; border-radius:3px; font-family: Arial, sans-serif; font-size:13px; color:#5a5658;">
-          Chegue com alguns minutos de antecedência. Endereço: Estr. Vila Dantas, km 5 — Vila Dantas, Areal – RJ, 25845-000.
-        </div>
-
-        <p style="font-family: Arial, sans-serif; font-size:12px; color:#8A8178; margin-top:24px;">Dúvidas? Fale conosco pelo WhatsApp: <a href="https://wa.me/5524998607810" style="color:#551314;">(24) 99860-7810</a></p>
-      </div>
-    </div>
+<div id="login-view" class="painel-wrap">
+  <div class="login-card">
+    <p style="font-family:var(--serif); font-size:1.4rem; margin-bottom:0.5rem;">Painel de Reservas</p>
+    <p style="font-size:0.85rem; opacity:0.7;">Casa Vinnus — acesso restrito à equipe</p>
+    <input type="password" id="senha" placeholder="Senha de acesso">
+    <button onclick="entrar()">Entrar</button>
+    <p id="erro-login" style="color:var(--syrah); font-size:0.85rem; margin-top:1rem;"></p>
   </div>
-</body>
-</html>`;
-}
+</div>
 
-async function enviarEmail(destinatarios, assunto, html) {
-  const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey || !destinatarios || destinatarios.length === 0) return;
-  try {
-    await fetch("https://api.resend.com/emails", {
-      method: "POST",
-      headers: { "Content-Type": "application/json", Authorization: `Bearer ${apiKey}` },
-      body: JSON.stringify({
-        from: "Casa Vinnus <onboarding@resend.dev>",
-        to: destinatarios,
-        subject: assunto,
-        html,
-      }),
-    });
-  } catch (e) {
-    console.error("Falha ao enviar e-mail:", e);
-  }
-}
+<div id="painel-view" class="painel-wrap" style="display:none;">
+  <p style="font-family:var(--serif); font-size:1.6rem; margin-bottom:1.5rem;">Reservas — Casa Vinnus <a href="codigos-desconto.html" style="font-size:0.75rem; text-transform:uppercase; letter-spacing:1px; opacity:0.6; margin-left:1rem;">Gerenciar códigos →</a></p>
 
-async function notificarConfirmacao(item, chave, siteUrl) {
-  const [data, horario] = chave.split("_");
-  const dataFormatada = data.split("-").reverse().join("/");
-  const voucherHtml = montarVoucherHtml(item, chave);
+  <div class="filtro-form">
+    <div>
+      <label>De</label>
+      <input type="date" id="dataInicio">
+    </div>
+    <div>
+      <label>Até</label>
+      <input type="date" id="dataFim">
+    </div>
+    <button onclick="carregar()">Buscar</button>
+  </div>
 
-  // Voucher para o hóspede
-  if (item.email) {
-    await enviarEmail([item.email], "Sua visita à Casa Vinnus está confirmada", voucherHtml);
-  }
-
-  // Aviso interno — aceita um ou mais e-mails, separados por vírgula na variável EMAIL_EQUIPE
-  const emailsEquipe = (process.env.EMAIL_EQUIPE || "")
-    .split(",")
-    .map((e) => e.trim())
-    .filter(Boolean);
-
-  if (emailsEquipe.length > 0) {
-    const linkPainel = siteUrl ? `${siteUrl}/admin-reservas.html` : "/admin-reservas.html";
-    const htmlEquipe = `<!DOCTYPE html>
-<html lang="pt-BR">
-<head><meta charset="UTF-8"></head>
-<body style="margin:0; padding:0;">
-      <div style="font-family: Georgia, serif; max-width: 480px; margin: 0 auto; padding: 24px; border: 1px solid #ddd;">
-        <p style="text-transform: uppercase; letter-spacing: 2px; font-size: 11px; color: #BA933C;">Casa Vinnus — nova reserva</p>
-        <h2 style="color: #551314; margin: 8px 0 20px;">${dataFormatada} às ${horario}</h2>
-        <p><strong>Nome:</strong> ${item.nome}</p>
-        <p><strong>WhatsApp:</strong> <a href="https://wa.me/55${item.telefone.replace(/\D/g, "")}" style="color:#551314;">${item.telefone}</a></p>
-        <p><strong>E-mail:</strong> ${item.email ? `<a href="mailto:${item.email}" style="color:#551314;">${item.email}</a>` : "não informado"}</p>
-        <p><strong>Pessoas:</strong> ${item.pessoas}</p>
-        <p><strong>Degustação:</strong> ${item.tipoDegustacao === "vinho" ? "Vinho" : "Suco (sem álcool)"}</p>
-        <p><strong>Valor pago:</strong> R$ ${item.valorTotal}${item.descontoAplicado ? " (com desconto de hóspede)" : ""}</p>
-        ${item.teste ? '<p style="color:#8a6d1a;"><strong>Atenção: esta é uma reserva de TESTE.</strong></p>' : ""}
-        <p style="margin-top: 24px; font-size: 12px; color: #888;">Ver todas as reservas no painel: <a href="${linkPainel}" style="color:#551314;">${linkPainel}</a></p>
+  <details style="margin-bottom:2rem;">
+    <summary style="cursor:pointer; font-size:0.85rem; color:var(--syrah); text-transform:uppercase; letter-spacing:1px; margin-bottom:0.8rem;">+ Inserir reserva feita pelo WhatsApp</summary>
+    <div class="turma-card" style="margin-top:0.8rem;">
+      <div class="filtro-form" style="flex-wrap:wrap;">
+        <div><label>Nome</label><input type="text" id="mNome"></div>
+        <div><label>WhatsApp</label><input type="text" id="mTelefone"></div>
+        <div><label>Data</label><input type="date" id="mData"></div>
+        <div>
+          <label>Horário</label>
+          <select id="mHorario" style="padding:0.6rem 0.8rem; border:1px solid rgba(70,66,68,0.25); border-radius:3px;">
+            <option value="11:00">11:00</option>
+            <option value="12:30">12:30</option>
+            <option value="14:00">14:00</option>
+          </select>
+        </div>
+        <div><label>Pessoas</label><input type="number" id="mPessoas" min="1" max="20" style="width:70px;"></div>
+        <div>
+          <label>Degustação</label>
+          <select id="mTipo" style="padding:0.6rem 0.8rem; border:1px solid rgba(70,66,68,0.25); border-radius:3px;">
+            <option value="vinho">Vinho</option>
+            <option value="suco">Suco</option>
+          </select>
+        </div>
+        <div>
+          <label>Pagamento</label>
+          <select id="mPaga" style="padding:0.6rem 0.8rem; border:1px solid rgba(70,66,68,0.25); border-radius:3px;">
+            <option value="nao">Ainda não pagou</option>
+            <option value="sim">Já pagou</option>
+          </select>
+        </div>
+        <button onclick="criarReservaManual()">Salvar</button>
       </div>
-</body>
-</html>`;
-    await enviarEmail(emailsEquipe, `Nova reserva confirmada — ${dataFormatada} às ${horario}`, htmlEquipe);
+      <p id="erroManual" style="color:var(--syrah); font-size:0.85rem; margin:0.6rem 0 0;"></p>
+    </div>
+  </details>
+
+  <div id="resultado"></div>
+</div>
+
+<script>
+  var SENHA_KEY = 'painel-casa-vinnus-senha';
+
+  function entrar() {
+    var senha = document.getElementById('senha').value;
+    sessionStorage.setItem(SENHA_KEY, senha);
+    mostrarPainel();
   }
-}
 
-export default async (req) => {
-  const accessToken = process.env.MP_ACCESS_TOKEN;
-  if (!accessToken) {
-    return new Response("Configuração ausente", { status: 500 });
+  function hoje() {
+    return new Date().toISOString().split('T')[0];
+  }
+  function daquiA(dias) {
+    var d = new Date();
+    d.setDate(d.getDate() + dias);
+    return d.toISOString().split('T')[0];
   }
 
-  const url = new URL(req.url);
-  let paymentId = url.searchParams.get("data.id") || url.searchParams.get("id");
-  let topic = url.searchParams.get("type") || url.searchParams.get("topic");
+  function mostrarPainel() {
+    document.getElementById('login-view').style.display = 'none';
+    document.getElementById('painel-view').style.display = 'block';
+    document.getElementById('dataInicio').value = hoje();
+    document.getElementById('dataFim').value = daquiA(30);
+    carregar();
+  }
 
-  // O Mercado Pago também pode enviar a notificação via corpo POST em JSON.
-  if (!paymentId && req.method === "POST") {
-    try {
-      const body = await req.json();
-      paymentId = body?.data?.id;
-      topic = body?.type || topic;
-    } catch {
-      // ignora corpo vazio/inválido
+  function criarReservaManual() {
+    var senha = sessionStorage.getItem(SENHA_KEY);
+    var payload = {
+      nome: document.getElementById('mNome').value.trim(),
+      telefone: document.getElementById('mTelefone').value.trim(),
+      data: document.getElementById('mData').value,
+      horario: document.getElementById('mHorario').value,
+      pessoas: document.getElementById('mPessoas').value,
+      tipoDegustacao: document.getElementById('mTipo').value,
+      paga: document.getElementById('mPaga').value === 'sim',
+    };
+    document.getElementById('erroManual').textContent = '';
+    fetch('/api/criar-reserva-manual', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-admin-secret': senha },
+      body: JSON.stringify(payload),
+    })
+      .then(function (r) { return r.json().then(function (d) { return { status: r.status, body: d }; }); })
+      .then(function (res) {
+        if (res.status !== 200) {
+          document.getElementById('erroManual').textContent = res.body.erro || 'Não foi possível salvar.';
+          return;
+        }
+        document.getElementById('mNome').value = '';
+        document.getElementById('mTelefone').value = '';
+        document.getElementById('mPessoas').value = '';
+        carregar();
+      });
+  }
+
+  function carregar() {
+    var senha = sessionStorage.getItem(SENHA_KEY);
+    var inicio = document.getElementById('dataInicio').value;
+    var fim = document.getElementById('dataFim').value;
+    var resultadoEl = document.getElementById('resultado');
+    resultadoEl.innerHTML = '<p class="vazio">Carregando...</p>';
+
+    fetch('/api/listar-reservas?inicio=' + inicio + '&fim=' + fim, {
+      headers: { 'x-admin-secret': senha }
+    })
+      .then(function (r) {
+        if (r.status === 401) { throw new Error('senha'); }
+        return r.json();
+      })
+      .then(function (data) {
+        renderizar(data.turmas || []);
+      })
+      .catch(function (e) {
+        if (e.message === 'senha') {
+          sessionStorage.removeItem(SENHA_KEY);
+          document.getElementById('login-view').style.display = 'block';
+          document.getElementById('painel-view').style.display = 'none';
+          document.getElementById('erro-login').textContent = 'Senha incorreta.';
+        } else {
+          resultadoEl.innerHTML = '<p class="vazio">Não consegui carregar as reservas.</p>';
+        }
+      });
+  }
+
+  function formatarData(d) {
+    var partes = d.split('-');
+    return partes[2] + '/' + partes[1] + '/' + partes[0];
+  }
+
+  function renderizar(turmas) {
+    var resultadoEl = document.getElementById('resultado');
+    if (turmas.length === 0) {
+      resultadoEl.innerHTML = '<p class="vazio">Nenhuma reserva no período.</p>';
+      return;
     }
-  }
-
-  // Só nos interessam notificações de pagamento.
-  if (topic && topic !== "payment") {
-    return new Response("ok", { status: 200 });
-  }
-  if (!paymentId) {
-    return new Response("ok", { status: 200 });
-  }
-
-  // Busca os dados reais do pagamento direto na API do Mercado Pago —
-  // nunca confiamos apenas no que a notificação diz, sempre confirmamos.
-  let pagamento;
-  try {
-    const resp = await fetch(`https://api.mercadopago.com/v1/payments/${paymentId}`, {
-      headers: { Authorization: `Bearer ${accessToken}` },
+    var html = '';
+    turmas.forEach(function (turma) {
+      html += '<div class="turma-card">';
+      html += '<div class="turma-topo"><h3>' + formatarData(turma.data) + ' · ' + turma.horario + '</h3>';
+      html += '<span class="turma-vagas">' + turma.vagasRestantes + ' vaga(s) restante(s) de 20</span></div>';
+      html += '<table><thead><tr><th>Nome</th><th>WhatsApp</th><th>E-mail</th><th>Pessoas</th><th>Degustação</th><th>Valor</th><th>Status</th></tr></thead><tbody>';
+      turma.reservas.forEach(function (r) {
+        html += '<tr>';
+        html += '<td>' + r.nome + '</td>';
+        html += '<td>' + r.telefone + '</td>';
+        html += '<td>' + (r.email || '—') + '</td>';
+        html += '<td>' + r.pessoas + '</td>';
+        html += '<td>' + (r.tipoDegustacao === 'vinho' ? 'Vinho' : 'Suco') + '</td>';
+        html += '<td>R$ ' + r.valorTotal + '</td>';
+        var rotuloStatus = r.status === 'confirmado' ? 'Pago' : (r.status === 'pendente_manual' ? 'Combinado no WhatsApp — aguardando pagamento' : 'Aguardando pagamento (Mercado Pago)');
+        html += '<td><span class="tag ' + r.status + '">' + rotuloStatus + '</span>' + (r.teste ? '<span class="tag teste">teste</span>' : '') + (r.origem === 'whatsapp' ? '<span class="tag futuro">WhatsApp</span>' : '') + '</td>';
+        html += '</tr>';
+      });
+      html += '</tbody></table></div>';
     });
-    if (!resp.ok) {
-      return new Response("ok", { status: 200 });
-    }
-    pagamento = await resp.json();
-  } catch {
-    return new Response("erro ao consultar pagamento", { status: 500 });
+    resultadoEl.innerHTML = html;
   }
 
-  if (pagamento.status !== "approved") {
-    // Pagamento ainda pendente, rejeitado, etc. Não faz nada — o hold expira sozinho se não for pago.
-    return new Response("ok", { status: 200 });
+  // Se já tiver senha salva nesta aba, entra direto.
+  if (sessionStorage.getItem(SENHA_KEY)) {
+    mostrarPainel();
   }
+</script>
 
-  const referencia = pagamento.external_reference || "";
-  const [chave, holdId] = referencia.split("|");
-  if (!chave || !holdId) {
-    return new Response("ok", { status: 200 });
-  }
-
-  const store = getStore("reservas-casa-vinnus");
-
-  for (let tentativa = 0; tentativa < 4; tentativa++) {
-    let atual = { itens: [] };
-    let etagAtual = null;
-
-    try {
-      const resultado = await store.getWithMetadata(chave, { type: "json" });
-      if (resultado) {
-        atual = resultado.data || atual;
-        etagAtual = resultado.etag;
-      }
-    } catch {
-      break; // nada para confirmar
-    }
-
-    const itens = atual.itens || [];
-    const idx = itens.findIndex((item) => item.id === holdId);
-    if (idx === -1) break;
-
-    if (itens[idx].status === "confirmado") break; // já processado (webhook pode repetir)
-
-    itens[idx] = { ...itens[idx], status: "confirmado", pagamentoId: paymentId, confirmadoEm: new Date().toISOString() };
-    const novoRegistro = { itens };
-
-    try {
-      const opcoes = etagAtual ? { onlyIfMatch: etagAtual } : { onlyIfNew: true };
-      const gravado = await store.setJSON(chave, novoRegistro, opcoes);
-      if (gravado === false) continue;
-      await notificarConfirmacao(itens[idx], chave, new URL(req.url).origin);
-      break;
-    } catch {
-      continue;
-    }
-  }
-
-  return new Response("ok", { status: 200 });
-};
-
-export const config = { path: "/api/webhook-mercadopago" };
+</body>
+</html>

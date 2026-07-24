@@ -3,378 +3,140 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Agendar visita guiada | Casa Vinnus — Vinícola Arouca</title>
-<meta name="description" content="Agende sua visita guiada e degustação na Vinícola Arouca / Casa Vinnus, Areal, Serra Fluminense.">
+<meta name="robots" content="noindex, nofollow">
+<title>Códigos de Desconto | Casa Vinnus</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Raleway:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/estilo.css">
 <style>
-  .form-card {
-    max-width: 560px;
-    margin: 0 auto;
-    background: var(--branco);
-    border: 1px solid rgba(70,66,68,0.14);
-    border-radius: 4px;
-    padding: clamp(1.5rem, 5vw, 3rem);
-  }
-  .campo { margin-bottom: 1.4rem; }
-  .campo label {
-    display: block;
-    font-size: 0.78rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    color: var(--syrah);
-    margin-bottom: 0.5rem;
-  }
-  .campo input, .campo select {
-    width: 100%;
-    font-family: var(--sans);
-    font-size: 1rem;
-    padding: 0.75rem 0.9rem;
-    border: 1px solid rgba(70,66,68,0.25);
-    border-radius: 3px;
-    background: var(--cal);
-    color: var(--tinta);
-  }
-  .campo input:focus, .campo select:focus { outline: none; border-color: var(--syrah); }
-  .horarios-lista { display: flex; flex-wrap: wrap; gap: 0.6rem; }
-  .horario-opcao {
-    flex: 1 1 auto;
-    min-width: 120px;
+  body { background: var(--cal); }
+  .painel-wrap { max-width: 640px; margin: 0 auto; padding: 2rem 1.2rem 4rem; }
+  .login-card {
+    max-width: 380px; margin: 4rem auto; background: var(--branco);
+    border: 1px solid rgba(70,66,68,0.15); border-radius: 4px; padding: 2rem;
     text-align: center;
-    padding: 0.7rem 0.5rem;
-    border: 1px solid rgba(70,66,68,0.25);
-    border-radius: 3px;
-    cursor: pointer;
-    font-size: 0.88rem;
-    background: var(--cal);
   }
-  .horario-opcao.selecionado { border-color: var(--syrah); background: var(--syrah); color: var(--branco); }
-  .horario-opcao.indisponivel { opacity: 0.4; cursor: not-allowed; text-decoration: line-through; }
-  .horario-opcao small { display: block; font-size: 0.72rem; opacity: 0.75; margin-top: 0.2rem; }
-  .btn-enviar {
-    width: 100%;
-    padding: 1rem;
-    background: var(--syrah);
-    color: var(--branco);
-    border: none;
-    font-size: 0.85rem;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    cursor: pointer;
-    margin-top: 0.5rem;
+  .login-card input { width: 100%; padding: 0.75rem 0.9rem; margin: 1rem 0; border: 1px solid rgba(70,66,68,0.25); border-radius: 3px; font-size: 1rem; }
+  button {
+    background: var(--syrah); color: var(--branco); border: none;
+    padding: 0.75rem 1.5rem; border-radius: 3px; cursor: pointer;
+    text-transform: uppercase; letter-spacing: 1px; font-size: 0.8rem;
   }
-  .btn-enviar:hover { background: var(--syrah-profundo); }
-  .btn-enviar:disabled { opacity: 0.5; cursor: not-allowed; }
-  .aviso { font-size: 0.85rem; padding: 0.8rem 1rem; border-radius: 3px; margin-bottom: 1.2rem; }
-  .aviso.erro { background: #F5E4E1; color: var(--syrah-profundo); }
-  .aviso.sucesso { background: #EAF0E2; color: var(--vinha); }
-  .alt-reserva {
-    max-width: 560px;
-    margin: 2rem auto 0;
-    text-align: center;
-    padding-top: 1.5rem;
-    border-top: 1px solid rgba(70,66,68,0.12);
+  .form-novo { display: flex; gap: 0.6rem; margin-bottom: 2rem; }
+  .form-novo input { flex: 1; padding: 0.75rem 0.9rem; border: 1px solid rgba(70,66,68,0.25); border-radius: 3px; text-transform: uppercase; }
+  .lista-codigos { background: var(--branco); border: 1px solid rgba(70,66,68,0.15); border-radius: 4px; }
+  .item-codigo {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0.9rem 1.1rem; border-bottom: 1px solid rgba(70,66,68,0.08);
   }
+  .item-codigo:last-child { border-bottom: none; }
+  .item-codigo .nome { font-family: var(--serif); font-size: 1.1rem; }
+  .item-codigo .data { font-size: 0.75rem; opacity: 0.6; }
+  .btn-remover { background: none; color: var(--syrah); border: 1px solid var(--syrah); padding: 0.35rem 0.8rem; font-size: 0.7rem; }
+  .vazio { text-align: center; opacity: 0.6; padding: 2rem 0; }
 </style>
 </head>
 <body>
 
-<nav class="nav">
-  <div class="nav-inner">
-    <a href="index.html" class="nav-logo"><img src="img/geral/logo-vinicola-arouca.png" alt="Vinícola Arouca">Vinícola Arouca</a>
-    <button class="nav-toggle" aria-label="Abrir menu" aria-expanded="false"><span></span></button>
-    <div class="nav-links">
-      <a href="index.html">Início</a>
-      <a href="a-vinicola.html">A Vinícola</a>
-      <a href="casa-vinnus.html" aria-current="page">Casa Vinnus</a>
-      <a href="villa-arouca.html">Villa Arouca</a>
-      <a href="planeje.html">Planeje</a>
-      <a href="agendar-visita.html" class="nav-cta">Agendar visita</a>
-    </div>
+<div id="login-view" class="painel-wrap">
+  <div class="login-card">
+    <p style="font-family:var(--serif); font-size:1.4rem; margin-bottom:0.5rem;">Códigos de Desconto</p>
+    <p style="font-size:0.85rem; opacity:0.7;">Casa Vinnus — acesso restrito à equipe</p>
+    <input type="password" id="senha" placeholder="Senha de acesso">
+    <button onclick="entrar()">Entrar</button>
+    <p id="erro-login" style="color:var(--syrah); font-size:0.85rem; margin-top:1rem;"></p>
   </div>
-</nav>
+</div>
 
-<header class="hero" style="min-height:30vh; background-image:url('img/casa-vinnus/casa-vinnus-hero.jpg')">
-  <div class="hero-content">
-    <p class="eyebrow">Casa Vinnus</p>
-    <h1 style="font-size:clamp(1.7rem, 3.5vw, 2.4rem);">Agende sua visita guiada</h1>
+<div id="painel-view" class="painel-wrap" style="display:none;">
+  <p style="font-family:var(--serif); font-size:1.6rem; margin-bottom:0.4rem;">Códigos de Desconto</p>
+  <p style="font-size:0.88rem; opacity:0.75; margin-bottom:1.5rem;">Qualquer código ativo aqui dá o valor de hóspede (R$160 vinho / R$105 suco) na página de agendamento.</p>
+
+  <div class="form-novo">
+    <input type="text" id="novoCodigo" placeholder="NOVOCODIGO" maxlength="20">
+    <button onclick="criar()">Criar</button>
   </div>
-</header>
+  <p id="erro-criar" style="color:var(--syrah); font-size:0.85rem; margin-bottom:1.5rem;"></p>
 
-<section style="padding-top:1rem;">
-  <div class="container">
-    <p class="eyebrow" style="text-align:center;">Reservar</p>
-    <h2 style="text-align:center; margin-bottom:0.6rem;">Agende sua visita</h2>
-    <p style="text-align:center; max-width:46ch; margin:0 auto 2.5rem;">Visita guiada pela vinícola com degustação orientada dos rótulos da casa — vinho ou suco, sem álcool. Quinta às 14h · sexta e sábado, 11h e 14h · domingo às 11h. Agendamento com pelo menos 18h de antecedência.</p>
+  <div class="lista-codigos" id="lista"></div>
+</div>
 
-    <div id="aviso-container"></div>
-
-    <form id="form-agendar" class="form-card">
-      <div class="campo">
-        <label for="nome">Nome</label>
-        <input type="text" id="nome" required placeholder="Seu nome completo">
-      </div>
-
-      <div class="campo">
-        <label for="telefone">WhatsApp</label>
-        <input type="tel" id="telefone" required placeholder="(00) 00000-0000">
-      </div>
-
-      <div class="campo">
-        <label for="email">E-mail</label>
-        <input type="email" id="email" required placeholder="seu@email.com">
-      </div>
-
-      <div class="campo">
-        <label for="data">Data da visita</label>
-        <input type="date" id="data" required>
-      </div>
-
-      <div class="campo" id="campo-horarios" style="display:none;">
-        <label>Horário</label>
-        <div class="horarios-lista" id="horarios-lista"></div>
-      </div>
-
-      <div class="campo">
-        <label for="pessoas">Número de pessoas</label>
-        <input type="number" id="pessoas" min="1" max="20" required placeholder="Até 20 por turma">
-      </div>
-
-      <div class="campo">
-        <label>Degustação</label>
-        <div class="horarios-lista">
-          <div class="horario-opcao tipo-opcao selecionado" data-tipo="vinho" id="opcao-vinho">Com vinho</div>
-          <div class="horario-opcao tipo-opcao" data-tipo="suco" id="opcao-suco">Com suco (sem álcool)</div>
-        </div>
-      </div>
-
-      <div class="campo">
-        <label for="codigo">Código de desconto (hóspedes da Villa Arouca)</label>
-        <input type="text" id="codigo" placeholder="Opcional">
-      </div>
-
-      <div class="campo" id="campo-preco" style="display:none;">
-        <div class="rest-horarios" style="margin-bottom:0;">
-          <div class="linha"><span>Valor por pessoa</span><span id="preco-unitario">—</span></div>
-          <div class="linha"><span><strong>Total</strong></span><span id="preco-total"><strong>—</strong></span></div>
-        </div>
-      </div>
-
-      <button type="submit" class="btn-enviar" id="btn-enviar" disabled>Selecione um horário</button>
-    </form>
-
-    <div class="alt-reserva">
-      <p style="font-size:0.9rem; opacity:0.75; margin-bottom:0.8rem;">Prefere combinar direto?</p>
-      <a href="https://wa.me/5524998607810" target="_blank" rel="noopener" class="convite escuro">Falar com a Casa Vinnus no WhatsApp</a>
-    </div>
-  </div>
-</section>
-
-<section style="padding:1.5rem 0 0.5rem;">
-  <div class="container" style="max-width:52ch; text-align:center; margin-left:auto; margin-right:auto;">
-    <p class="eyebrow">Como é a visita</p>
-    <p>O roteiro parte dos parreirais — o cultivo, a dupla poda, a colheita de inverno — e termina na taça, com degustação orientada dos rótulos da casa harmonizada com queijos e frios da região. Cerca de 1h30, no seu ritmo.</p>
-  </div>
-</section>
-
-<section style="padding:0.5rem 0;">
-  <div class="container grid-3">
-    <div class="foto-slot" style="min-height:220px">
-      <img src="img/vinicola/vinicola-fileira-arvore.jpg" alt="Fileiras de parreirais da Vinícola Arouca">
-      <div class="legenda">Os parreirais</div>
-    </div>
-    <div class="foto-slot" style="min-height:220px">
-      <img src="img/casa-vinnus/vinnus-raw-78.jpg" alt="Degustação de vinho na Casa Vinnus">
-      <div class="legenda">A degustação</div>
-    </div>
-    <div class="foto-slot" style="min-height:220px">
-      <img src="img/casa-vinnus/vinnus-terraco-bussola.jpg" alt="Terraço da Casa Vinnus com mosaico em forma de rosa dos ventos">
-      <div class="legenda">A mesa</div>
-    </div>
-  </div>
-</section>
-
-<section style="padding:0.5rem 0 3rem;">
-  <div class="container" style="max-width:44ch; text-align:center; margin-left:auto; margin-right:auto;">
-    <p style="font-size:0.88rem; font-style:italic; opacity:0.75;">Chegue com alguns minutos de antecedência, para começar no seu ritmo. Como boa parte do roteiro é ao ar livre, vale levar protetor solar e um repelente — e, se o tempo estiver instável, um abrigo leve e um boné ajudam.</p>
-  </div>
-</section>
-
-<footer>
-  <div class="container">
-    <div class="footer-grid">
-      <div>
-        <p style="font-family:var(--serif); font-size:1.2rem; margin-bottom:0.5rem;">Villa Arouca</p>
-        <p style="font-size:0.82rem; opacity:0.7; margin-bottom:0.7rem;">A Villa Arouca está localizada dentro da Vinícola Arouca.</p>
-        <p>Vinícola Arouca<br>Fazenda Boavista — Estr. Vila Dantas, km 5<br>Vila Dantas, Areal – RJ, 25845-000</p>
-      </div>
-      <div>
-        <h4>Reservas</h4>
-        <p><a href="tel:+552120423554">21 2042-3554</a></p>
-        <p><a href="tel:+5522999071437">22 99907-1437</a></p>
-        <p><a href="mailto:reservas@villaarouca.com.br">reservas@villaarouca.com.br</a></p>
-      </div>
-    </div>
-    <div class="footer-bz">
-      <p style="font-family:var(--serif); font-size:1rem; letter-spacing:1px; margin-bottom:0.8rem; opacity:0.85;">VINÍCOLA AROUCA &nbsp;·&nbsp; CASA VINNUS &nbsp;·&nbsp; VILLA AROUCA</p>
-      <p>Uma empresa do <a href="https://grupobz.com.br/" target="_blank" rel="noopener">Grupo BZ</a> &nbsp;·&nbsp; <a href="admin-reservas.html" style="opacity:0.8; font-size:0.8rem; text-decoration:underline;">Administrativo</a></p>
-    </div>
-  </div>
-</footer>
-
-<a href="https://wa.me/5522999071437" target="_blank" rel="noopener" class="whats-flutuante" aria-label="Falar no WhatsApp com a Central de Reservas">
-  <svg viewBox="0 0 24 24"><path d="M17.5 14.4c-.3-.15-1.7-.85-2-.95-.27-.1-.46-.15-.66.15-.2.3-.75.95-.92 1.14-.17.2-.34.22-.63.07-.3-.15-1.24-.46-2.36-1.46-.87-.78-1.46-1.74-1.63-2.03-.17-.3-.02-.46.13-.6.13-.13.3-.34.44-.5.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.66-1.6-.9-2.2-.24-.58-.48-.5-.66-.5h-.56c-.2 0-.52.07-.79.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.22 3.08c.15.2 2.1 3.2 5.08 4.5.71.3 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.7-.7 1.94-1.37.24-.68.24-1.26.17-1.38-.07-.13-.26-.2-.56-.35zM12.02 22a9.9 9.9 0 0 1-5.05-1.38L3 21.6l1.02-3.83A9.9 9.9 0 1 1 12.02 22z"/></svg>
-</a>
-
-<script src="js/nav.js" defer></script>
 <script>
-  var dataInput = document.getElementById('data');
-  var campoHorarios = document.getElementById('campo-horarios');
-  var horariosLista = document.getElementById('horarios-lista');
-  var btnEnviar = document.getElementById('btn-enviar');
-  var avisoContainer = document.getElementById('aviso-container');
-  var horarioSelecionado = null;
-  var tipoSelecionado = 'vinho';
-  var precos = { vinho: { publico: 180, hospede: 160 }, suco: { publico: 120, hospede: 105 } };
+  var SENHA_KEY = 'painel-casa-vinnus-senha';
 
-  var hoje = new Date();
-  var minData = new Date(hoje.getTime() + 18 * 3600000);
-  dataInput.min = minData.toISOString().split('T')[0];
-
-  function mostrarAviso(texto, tipo) {
-    avisoContainer.innerHTML = '<div class="aviso ' + tipo + '">' + texto + '</div>';
+  function entrar() {
+    sessionStorage.setItem(SENHA_KEY, document.getElementById('senha').value);
+    mostrarPainel();
   }
 
-  function limparAviso() { avisoContainer.innerHTML = ''; }
-
-  function atualizarPreco() {
-    var pessoas = parseInt(document.getElementById('pessoas').value, 10) || 0;
-    var campoPreco = document.getElementById('campo-preco');
-    if (!pessoas) { campoPreco.style.display = 'none'; return; }
-    var temCodigo = document.getElementById('codigo').value.trim().length > 0;
-    var tabela = precos[tipoSelecionado];
-    var unitario = temCodigo ? tabela.hospede : tabela.publico;
-    document.getElementById('preco-unitario').textContent = 'R$ ' + unitario + (temCodigo ? ' (com código)' : '');
-    document.getElementById('preco-total').innerHTML = '<strong>R$ ' + (unitario * pessoas) + '</strong>';
-    campoPreco.style.display = 'block';
+  function mostrarPainel() {
+    document.getElementById('login-view').style.display = 'none';
+    document.getElementById('painel-view').style.display = 'block';
+    carregar();
   }
 
-  document.getElementById('opcao-vinho').addEventListener('click', function () {
-    tipoSelecionado = 'vinho';
-    document.getElementById('opcao-vinho').classList.add('selecionado');
-    document.getElementById('opcao-suco').classList.remove('selecionado');
-    atualizarPreco();
-  });
-  document.getElementById('opcao-suco').addEventListener('click', function () {
-    tipoSelecionado = 'suco';
-    document.getElementById('opcao-suco').classList.add('selecionado');
-    document.getElementById('opcao-vinho').classList.remove('selecionado');
-    atualizarPreco();
-  });
-  document.getElementById('pessoas').addEventListener('input', atualizarPreco);
-  document.getElementById('codigo').addEventListener('input', atualizarPreco);
-
-  function verificarData() {
-    horarioSelecionado = null;
-    btnEnviar.disabled = true;
-    btnEnviar.textContent = 'Selecione um horário';
-    limparAviso();
-
-    if (!dataInput.value) { campoHorarios.style.display = 'none'; return; }
-
-    fetch('/api/disponibilidade?data=' + dataInput.value)
-      .then(function (r) { return r.json(); })
-      .then(function (resp) {
-        if (resp.precos) precos = resp.precos;
-        atualizarPreco();
-        horariosLista.innerHTML = '';
-        if (!resp.horarios || resp.horarios.length === 0) {
-          campoHorarios.style.display = 'none';
-          mostrarAviso(resp.mensagem || 'Não recebemos visitas às segundas, terças e quartas. Escolha quinta, sexta, sábado ou domingo.', 'erro');
-          return;
-        }
-        campoHorarios.style.display = 'block';
-        resp.horarios.forEach(function (h) {
-          var div = document.createElement('div');
-          div.className = 'horario-opcao' + (h.disponivel ? '' : ' indisponivel');
-          div.innerHTML = h.horario + '<small>' + (h.disponivel ? h.vagasRestantes + ' vagas' : 'indisponível') + '</small>';
-          if (h.disponivel) {
-            div.addEventListener('click', function () {
-              horariosLista.querySelectorAll('.horario-opcao').forEach(function (el) { el.classList.remove('selecionado'); });
-              div.classList.add('selecionado');
-              horarioSelecionado = h.horario;
-              btnEnviar.disabled = false;
-              btnEnviar.textContent = 'Ir para o pagamento';
-            });
-          }
-          horariosLista.appendChild(div);
-        });
+  function carregar() {
+    var senha = sessionStorage.getItem(SENHA_KEY);
+    fetch('/api/codigos', { headers: { 'x-admin-secret': senha } })
+      .then(function (r) {
+        if (r.status === 401) throw new Error('senha');
+        return r.json();
       })
-      .catch(function () {
-        campoHorarios.style.display = 'none';
-        mostrarAviso('Não consegui checar a disponibilidade agora. Tente novamente ou fale pelo WhatsApp.', 'erro');
+      .then(function (data) { renderizar(data.codigos || []); })
+      .catch(function (e) {
+        if (e.message === 'senha') {
+          sessionStorage.removeItem(SENHA_KEY);
+          document.getElementById('login-view').style.display = 'block';
+          document.getElementById('painel-view').style.display = 'none';
+          document.getElementById('erro-login').textContent = 'Senha incorreta.';
+        }
       });
   }
 
-  dataInput.addEventListener('change', verificarData);
-  dataInput.addEventListener('input', verificarData);
-  dataInput.addEventListener('blur', verificarData);
-
-  document.getElementById('form-agendar').addEventListener('submit', function (e) {
-    e.preventDefault();
-    if (!horarioSelecionado) return;
-
-    var payload = {
-      nome: document.getElementById('nome').value.trim(),
-      telefone: document.getElementById('telefone').value.trim(),
-      email: document.getElementById('email').value.trim(),
-      data: dataInput.value,
-      horario: horarioSelecionado,
-      pessoas: document.getElementById('pessoas').value,
-      tipoDegustacao: tipoSelecionado,
-      codigoDesconto: document.getElementById('codigo').value.trim(),
-    };
-
-    btnEnviar.disabled = true;
-    btnEnviar.textContent = 'Gerando pagamento...';
-    limparAviso();
-
-    fetch('/api/criar-pagamento', {
+  function criar() {
+    var senha = sessionStorage.getItem(SENHA_KEY);
+    var codigo = document.getElementById('novoCodigo').value.trim();
+    document.getElementById('erro-criar').textContent = '';
+    fetch('/api/codigos', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
+      headers: { 'Content-Type': 'application/json', 'x-admin-secret': senha },
+      body: JSON.stringify({ codigo: codigo })
     })
       .then(function (r) { return r.json().then(function (d) { return { status: r.status, body: d }; }); })
       .then(function (res) {
-        if (res.status !== 200 || !res.body.checkoutUrl) {
-          mostrarAviso(res.body.erro || 'Não foi possível gerar o pagamento.', 'erro');
-          btnEnviar.disabled = false;
-          btnEnviar.textContent = 'Ir para o pagamento';
+        if (res.status !== 200) {
+          document.getElementById('erro-criar').textContent = res.body.erro || 'Não foi possível criar.';
           return;
         }
-        mostrarAviso('Vaga reservada por 15 minutos. Redirecionando para o pagamento...', 'sucesso');
-        window.location.href = res.body.checkoutUrl;
-      })
-      .catch(function () {
-        mostrarAviso('Não consegui gerar o pagamento agora. Tente novamente ou fale pelo WhatsApp.', 'erro');
-        btnEnviar.disabled = false;
-        btnEnviar.textContent = 'Ir para o pagamento';
+        document.getElementById('novoCodigo').value = '';
+        carregar();
       });
-  });
+  }
 
-  // Se a pessoa voltar do Mercado Pago, mostra o status do pagamento.
-  (function () {
-    var params = new URLSearchParams(window.location.search);
-    var status = params.get('status');
-    if (status === 'sucesso') {
-      mostrarAviso('Pagamento confirmado! Sua visita está reservada — em breve você recebe a confirmação pelo WhatsApp.', 'sucesso');
-    } else if (status === 'pendente') {
-      mostrarAviso('Pagamento em processamento. Assim que for aprovado, sua vaga é confirmada.', 'erro');
-    } else if (status === 'falha') {
-      mostrarAviso('O pagamento não foi concluído. Sua vaga não foi reservada — pode tentar novamente.', 'erro');
+  function remover(codigo) {
+    var senha = sessionStorage.getItem(SENHA_KEY);
+    fetch('/api/codigos?codigo=' + encodeURIComponent(codigo), {
+      method: 'DELETE',
+      headers: { 'x-admin-secret': senha }
+    }).then(carregar);
+  }
+
+  function renderizar(codigos) {
+    var lista = document.getElementById('lista');
+    if (codigos.length === 0) {
+      lista.innerHTML = '<p class="vazio">Nenhum código criado ainda.</p>';
+      return;
     }
-  })();
+    var html = '';
+    codigos.forEach(function (c) {
+      var data = new Date(c.criadoEm).toLocaleDateString('pt-BR');
+      html += '<div class="item-codigo"><div><div class="nome">' + c.codigo + '</div><div class="data">criado em ' + data + '</div></div>';
+      html += '<button class="btn-remover" onclick="remover(\'' + c.codigo + '\')">Remover</button></div>';
+    });
+    lista.innerHTML = html;
+  }
+
+  if (sessionStorage.getItem(SENHA_KEY)) mostrarPainel();
 </script>
 
 </body>
